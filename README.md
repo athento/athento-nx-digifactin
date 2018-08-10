@@ -1,3 +1,1 @@
-**Summary**
-
-Athento Integration for DigifactIn
+# DigifactIn integration for Athento
