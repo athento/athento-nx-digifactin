@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<component name="org.athento.nuxeo.digifactin.AutomationContrib" version="1.0">
+
+    <extension point="chainException"
+               target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
+        <documentation>
+            Exception control chains.
+        </documentation>
+        <catchChain id="signExceptionChain"
+                    onChainId="Quiter.SaveInvoice">
+            <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
+        </catchChain>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+               point="chains">
+        <chain id="digifactinExceptionChain">
+            <operation id="Digifactin.Exception"/>
+        </chain>
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
+               point="operations">
+        <documentation>
+            Automation contributions for Digifactin.
+            Operations:
+            - Sign service
+        </documentation>
+        <operation class="org.athento.nuxeo.digifactin.operation.SignOperation" />
+        <!-- Exceptions -->
+        <operation class="org.athento.nuxeo.digifactin.operation.exception.DigifactinExceptionOperation"/>
+    </extension>
+
+</component>

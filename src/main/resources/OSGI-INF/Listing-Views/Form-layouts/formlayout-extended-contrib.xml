@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="org.athento.renault.extended-config"
+    version="1.0.0">
+    <require>org.nuxeo.runtime.started</require>
+
+    <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
+        <layout name="layout@formlayout-re-extendedconfig">
+            <templates>
+                <template mode="any">/layouts/re_extendedconfig_widget_layout_template.xhtml</template>
+            </templates>
+            <rows>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>endpointFacturaQuitter</widget>
+                </row>
+            </rows>
+            <widget name="endpointFacturaQuitter" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.endpointFacturaQuitter
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>re_extendedconfig:endpointFacturaQuitter</field>
+                </fields>
+            </widget>
+        </layout>
+    </extension>
+</component>
