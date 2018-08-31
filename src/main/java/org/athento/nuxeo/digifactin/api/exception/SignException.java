@@ -1,7 +1,7 @@
 package org.athento.nuxeo.digifactin.api.exception;
 
 /**
- * Factura exception.
+ * Sign exception.
  */
 public class SignException extends DigifactinException {
 
@@ -19,17 +19,7 @@ public class SignException extends DigifactinException {
      * @param code
      */
     public SignException(String message, String code) {
-        super(message, code);
-    }
-
-    /**
-     *
-     * @param message
-     * @param code
-     * @param cause
-     */
-    public SignException(String message, String code, Throwable cause) {
-        super(message, code, cause);
+        super(message);
     }
 
     /**

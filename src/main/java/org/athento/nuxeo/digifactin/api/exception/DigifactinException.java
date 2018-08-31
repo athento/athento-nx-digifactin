@@ -3,7 +3,7 @@ package org.athento.nuxeo.digifactin.api.exception;
 import org.nuxeo.ecm.automation.server.jaxrs.RestOperationException;
 
 /**
- * Default Renault exception.
+ * Default Digifactin exception.
  */
 public class DigifactinException extends RestOperationException {
 
@@ -11,17 +11,13 @@ public class DigifactinException extends RestOperationException {
 
     private static final long serialVersionUID = -57394576980234445L;
 
-    String code;
-
-    public DigifactinException(String message, String code, Throwable cause) {
-        super(message, cause);
-        this.code = code;
+    public DigifactinException(String message) {
+        super(message);
         DigifactinException.setEmptyStackTrace(this);
     }
 
-    public DigifactinException(String message, String code) {
-        super(message, null);
-        this.code = code;
+    public DigifactinException(String message, Throwable cause) {
+        super(message, cause);
         DigifactinException.setEmptyStackTrace(this);
     }
 
@@ -56,8 +52,5 @@ public class DigifactinException extends RestOperationException {
         return e;
     }
 
-    public String getCode() {
-        return code;
-    }
 
 }

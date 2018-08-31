@@ -37,7 +37,7 @@ public class DigifactinExceptionOperation {
         int returnCode = 500;
         if (excObject instanceof DigifactinException) {
             retVal = new DigifactinExceptionEntity(((DigifactinException) excObject).getMessage(),
-                    ((DigifactinException) excObject).getCode());
+                    ((DigifactinException) excObject).getMessage());
         } else if (excObject instanceof Throwable) {
             Throwable t = (Throwable) excObject;
             retVal = new DigifactinExceptionEntity(t.getMessage(), "500");

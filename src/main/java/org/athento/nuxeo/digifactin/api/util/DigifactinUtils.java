@@ -1,5 +1,6 @@
 package org.athento.nuxeo.digifactin.api.util;
 
+import org.athento.nuxeo.digifactin.api.model.PostValue;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.PathRef;
@@ -117,6 +118,52 @@ public final class DigifactinUtils {
      */
     public static String formatDate(Date date, String format) {
         return new SimpleDateFormat(format).format(date);
+    }
+
+    /**
+     * Parse postValue to map.
+     *
+     * @param postValue
+     * @return
+     */
+    public static Map<String,Object> parsePostValue(PostValue postValue) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("USER", postValue.getUser());
+        data.put("CERTIFICATE", postValue.getCertificate());
+        data.put("CERTRUTA", postValue.getCertruta());
+        data.put("FOLDER", postValue.getFolder());
+        data.put("NAME", postValue.getName());
+        data.put("SHA", postValue.getSha());
+        data.put("FV", postValue.isFv());
+        data.put("IMAGEN", postValue.getImagen());
+        data.put("OIVFV", postValue.isOivfv());
+        data.put("IIVFTP", postValue.isIivftp());
+        data.put("AM", postValue.isAm());
+        data.put("AMENI", postValue.isAmeni());
+        data.put("PTPFV", postValue.isPtpfv());
+        data.put("CVFV", postValue.getCvfv());
+        data.put("CHFV", postValue.getChfv());
+        data.put("ALTOFV", postValue.getAltofv());
+        data.put("ANCHOFV", postValue.getAnchofv());
+        data.put("TP", postValue.isTp());
+        data.put("UTP", postValue.getUtp());
+        data.put("E", postValue.isE());
+        data.put("EUSER", postValue.getEuser());
+        data.put("EADMIN", postValue.getEadmin());
+        data.put("ST", postValue.isSt());
+        data.put("STUSER", postValue.getStuser());
+        data.put("STPASS", postValue.getStpass());
+        data.put("STURL", postValue.getSturl());
+        data.put("PDFA", postValue.isPdfa());
+        data.put("FVP", postValue.isFvp());
+        data.put("PFV", postValue.getPfv());
+        data.put("FVPP", postValue.isFvpp());
+        data.put("FVUP", postValue.isFvup());
+        data.put("MESDESDE", postValue.getMesdesde());
+        data.put("ANYODESDE", postValue.getAnyiodesde());
+        data.put("TIPOPERIODO", postValue.getTipoperiodo());
+        data.put("UploadedImage", postValue.getUploadedImage());
+        return data;
     }
 }
 

@@ -7,7 +7,15 @@
             Exception control chains.
         </documentation>
         <catchChain id="signExceptionChain"
-                    onChainId="Quiter.SaveInvoice">
+                    onChainId="Digifactin.SignCertified">
+            <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
+        </catchChain>
+        <catchChain id="signExceptionChain"
+                    onChainId="Digifactin.Login">
+            <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
+        </catchChain>
+        <catchChain id="signExceptionChain"
+                    onChainId="Digifactin.Logout">
             <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
         </catchChain>
     </extension>
@@ -24,9 +32,13 @@
         <documentation>
             Automation contributions for Digifactin.
             Operations:
+            - Login user
+            - Logout
             - Sign service
         </documentation>
         <operation class="org.athento.nuxeo.digifactin.operation.SignOperation" />
+        <operation class="org.athento.nuxeo.digifactin.operation.LoginOperation" />
+        <operation class="org.athento.nuxeo.digifactin.operation.LogoutOperation" />
         <!-- Exceptions -->
         <operation class="org.athento.nuxeo.digifactin.operation.exception.DigifactinExceptionOperation"/>
     </extension>
