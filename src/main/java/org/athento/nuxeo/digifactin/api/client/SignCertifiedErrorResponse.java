@@ -9,6 +9,7 @@ public class SignCertifiedErrorResponse extends DigifactinResponse {
 
     String Message;
 
+    @JsonProperty("Message")
     public String getMessage() {
         return Message;
     }

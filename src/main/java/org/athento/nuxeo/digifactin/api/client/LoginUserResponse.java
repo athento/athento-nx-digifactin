@@ -10,6 +10,15 @@ public class LoginUserResponse extends DigifactinResponse {
     String cExplotacion;
     String folder;
     String perms;
+    int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getAuth_token() {
         return auth_token;

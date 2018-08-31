@@ -196,8 +196,6 @@ public class SignOperation {
         DocumentModel doc;
         try {
             doc = session.getDocument(docRef);
-            LOG.info("Doc " + doc);
-            LOG.info("Blog " + blob);
             DigifactinClient client = new DigifactinClientImpl();
             DigifactinResponse response = client.signCertified(token, getPostValue(blob));
             if (response != null) {

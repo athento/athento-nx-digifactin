@@ -95,7 +95,7 @@ public class DigifactinClientImpl implements DigifactinClient {
         headers.put("Authorization", username + " " + authToken);
 
         // Execute
-        DigifactinResponse digifactinResponse = new LogoutResponse();
+        LogoutResponse digifactinResponse = new LogoutResponse();
         try {
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/logout", headers, "{}");
             if (apiResponse != null) {
@@ -136,11 +136,10 @@ public class DigifactinClientImpl implements DigifactinClient {
         SignCertifiedResponse digifactinResponse = new SignCertifiedResponse();
         try {
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/signcertified", headers, data);
-            LOG.info("Api " + apiResponse.getStatus());
             if (apiResponse != null) {
                 ObjectMapper mapper = new ObjectMapper();
                 String result = apiResponse.getEntity(String.class);
-                if (result.contains("Message")) {
+                if (apiResponse.getStatus() == StatusCode.UNAUTHORIZED) {
                     SignCertifiedErrorResponse errorResponse = mapper.readValue(result, SignCertifiedErrorResponse.class);
                     return errorResponse;
                 } else {

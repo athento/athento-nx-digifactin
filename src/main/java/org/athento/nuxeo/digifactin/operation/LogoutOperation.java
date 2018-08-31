@@ -44,7 +44,7 @@ public class LogoutOperation {
         DigifactinClient client = new DigifactinClientImpl();
         DigifactinResponse response = client.logout(username, token);
         if (response != null) {
-            return String.valueOf(response.getStatus());
+            return String.valueOf(((LogoutResponse) response).getStatus());
         } else {
             throw new DigifactinException("Logout error, response is empty from Digifactin server.");
         }

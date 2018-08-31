@@ -11,11 +11,15 @@ public class SignCertifiedResponse extends DigifactinResponse {
     String nPages;
     String sError;
     int elapsed_time;
+    /** Based on {@link org.athento.nuxeo.digifactin.api.client.StatusCode} */
+    int statusCode;
 
-    @JsonProperty("statusCode")
-    @Override
-    public int getStatus() {
-        return super.getStatus();
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getFolder() {
@@ -53,7 +57,7 @@ public class SignCertifiedResponse extends DigifactinResponse {
     @Override
     public String toString() {
         return "SignCertifiedResponse{" +
-                "statusCode=" + status +
+                "statusCode=" + statusCode +
                 ", folder='" + folder + '\'' +
                 ", nPages='" + nPages + '\'' +
                 ", sError='" + sError + '\'' +
