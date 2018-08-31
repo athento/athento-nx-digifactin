@@ -137,11 +137,11 @@ public class DigifactinClientImpl implements DigifactinClient {
         try {
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/signcertified", headers, data);
             if (apiResponse != null) {
+                digifactinResponse.setStatusCode(apiResponse.getStatus());
                 ObjectMapper mapper = new ObjectMapper();
                 String result = apiResponse.getEntity(String.class);
                 if (apiResponse.getStatus() == StatusCode.UNAUTHORIZED) {
-                    SignCertifiedErrorResponse errorResponse = mapper.readValue(result, SignCertifiedErrorResponse.class);
-                    return errorResponse;
+                    digifactinResponse.setsError("No authorizado");
                 } else {
                     digifactinResponse = mapper.readValue(result, SignCertifiedResponse.class);
                 }
