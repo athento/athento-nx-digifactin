@@ -44,6 +44,12 @@ public class LoginOperation {
     String password;
 
     /**
+     * Session.
+     */
+    @Context
+    protected CoreSession session;
+
+    /**
      * Run, login Digifacting server.
      *
      * @return
@@ -54,7 +60,7 @@ public class LoginOperation {
         if (LOG.isInfoEnabled()) {
             LOG.info("Running Login operation ...");
         }
-        DigifactinClient client = new DigifactinClientImpl();
+        DigifactinClient client = new DigifactinClientImpl(session);
         DigifactinResponse response = client.loginUser(clientId, username, password);
         if (response != null) {
             // Login

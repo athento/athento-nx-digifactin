@@ -55,10 +55,10 @@ public class SignOperation {
     String certruta;
 
     @Param(name = "MESDESDE", required = false, description = "Mes desde que empieza el periodo (Solo para XML)")
-    int mesdesde;
+    Integer mesdesde;
 
     @Param(name = "ANYODESDE", required = false, description = "Año del periodo (Solo para XML)")
-    int anyodesde;
+    Integer anyodesde;
 
     @Param(name = "FV", required = false, description = "Firma Visible")
     boolean fv;
@@ -67,7 +67,7 @@ public class SignOperation {
     String imagen;
 
     @Param(name = "PFV", required = false, description = "Firma visible en pagina X")
-    int pfv;
+    Integer pfv;
 
     @Param(name = "TP", required = false, description = "Texto Personalizado")
     boolean tp;
@@ -139,7 +139,7 @@ public class SignOperation {
     boolean fvup;
 
     @Param(name = "TIPOPERIODO", required = false, description = " 0 mensual, 2 trimestral (Solo para XML)")
-    int tipoPeriodo;
+    long tipoPeriodo;
 
     /**
      * Param to save document.
@@ -196,7 +196,7 @@ public class SignOperation {
         DocumentModel doc;
         try {
             doc = session.getDocument(docRef);
-            DigifactinClient client = new DigifactinClientImpl();
+            DigifactinClient client = new DigifactinClientImpl(session);
             DigifactinResponse response = client.signCertified(token, getPostValue(blob));
             if (response != null) {
                 // Save response into document metadata
@@ -254,7 +254,7 @@ public class SignOperation {
         postValue.setAnyiodesde(anyodesde);
         postValue.setTipoperiodo(tipoPeriodo);
         FormDataFile image = new FormDataFile();
-        image.setContent(blob.getByteArray());
+        image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);
         return postValue;

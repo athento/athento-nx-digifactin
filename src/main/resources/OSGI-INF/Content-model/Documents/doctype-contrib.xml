@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="org.athento.nuxeo.quitter.doctype"
+<component name="org.athento.nuxeo.digifactin.doctype-contrib"
 	version="1.0.0">
 
 	<require>org.nuxeo.runtime.started</require>
@@ -9,7 +9,7 @@
 		point="doctype">
 
 		<doctype name="ExtendedConfig" extends="File" append="true">
-			<schema name="re_extendedconfig" />
+			<schema name="digiextendedconfig" />
 		</doctype>
 
 	</extension>
@@ -19,13 +19,13 @@
 
 		<type id="ExtendedConfig" append="true">
 			<layouts mode="create" append="true">
-				<layout>layout@formlayout-re-extendedconfig</layout>
+				<layout>layout@formlayout-digifactin-extendedconfig</layout>
 			</layouts>
 			<layouts mode="edit" append="true">
-				<layout>layout@formlayout-re-extendedconfig</layout>
+				<layout>layout@formlayout-digifactin-extendedconfig</layout>
 			</layouts>
 			<layouts mode="view" append="true">
-				<layout>layout@formlayout-re-extendedconfig</layout>
+				<layout>layout@formlayout-digifactin-extendedconfig</layout>
 			</layouts>
 		</type>
 

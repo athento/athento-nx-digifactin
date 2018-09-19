@@ -6,10 +6,18 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.client.urlconnection.HTTPSProperties;
+import com.sun.jersey.core.header.ContentDisposition;
+import com.sun.jersey.core.impl.provider.entity.FileProvider;
+import com.sun.jersey.core.impl.provider.entity.StringProvider;
+import com.sun.jersey.multipart.BodyPart;
+import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.jersey.multipart.file.FileDataBodyPart;
+import com.sun.jersey.multipart.file.StreamDataBodyPart;
 import com.sun.jersey.multipart.impl.MultiPartWriter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.http.entity.ByteArrayEntity;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -43,6 +51,8 @@ public final class RestAPIClient {
     public static ClientResponse doPost(String url, Map<String, Object> headers, Map<String, Object> formData) throws IOException {
         ClientConfig config = new DefaultClientConfig();
         config.getClasses().add(MultiPartWriter.class);
+        config.getClasses().add(StringProvider.class);
+        config.getClasses().add(FileProvider.class);
         config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES,
                 new HTTPSProperties(null, getSSLContext()));
         Client client = Client.create(config);
@@ -53,12 +63,14 @@ public final class RestAPIClient {
         for (Map.Entry<String, Object> data : formData.entrySet()) {
             Object value = data.getValue();
             if (value instanceof FormDataFile) {
-                formMultipart.field(data.getKey(), ((FormDataFile) value).getContent(), MediaType.valueOf(((FormDataFile) value).getMimetype()));
+                FileDataBodyPart bodyFile = new FileDataBodyPart();
+                bodyFile.setName(((FormDataFile) value).getFile().getName());
+                bodyFile.setFileEntity(((FormDataFile) value).getFile(), MediaType.valueOf(((FormDataFile) value).getMimetype()));
+                formMultipart.bodyPart(bodyFile);
             } else {
                 formMultipart.field(data.getKey(), String.valueOf(value));
             }
         }
-
         WebResource wr = client.resource(url);
         WebResource.Builder invocationBuilder = wr.type(MediaType.MULTIPART_FORM_DATA_TYPE);
         // Add headers

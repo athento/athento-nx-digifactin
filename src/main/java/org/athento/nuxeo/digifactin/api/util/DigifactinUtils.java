@@ -1,9 +1,18 @@
 package org.athento.nuxeo.digifactin.api.util;
 
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
 import org.athento.nuxeo.digifactin.api.model.PostValue;
+import org.nuxeo.ecm.automation.AutomationService;
+import org.nuxeo.ecm.automation.OperationContext;
+import org.nuxeo.ecm.automation.OperationException;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.PathRef;
+import org.nuxeo.ecm.core.api.UnrestrictedSessionRunner;
+import org.nuxeo.runtime.api.Framework;
 import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBContext;
@@ -16,16 +25,18 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.Serializable;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by victorsanchez on 26/10/16.
  */
 public final class DigifactinUtils {
+
+    /** Log. */
+    private static final Log LOG = LogFactory.getLog(DigifactinUtils.class);
 
     public static final String CONFIG_PATH = "/ExtendedConfig";
 
@@ -164,6 +175,63 @@ public final class DigifactinUtils {
         data.put("TIPOPERIODO", postValue.getTipoperiodo());
         data.put("UploadedImage", postValue.getUploadedImage());
         return data;
+    }
+
+    /**
+     * Run operation.
+     *
+     * @param operationId
+     * @param input
+     * @param params
+     * @param session
+     * @return
+     * @throws OperationException
+     */
+    public static Object runOperation(String operationId, Object input,
+                                      Map<String, Object> params, CoreSession session)
+            throws OperationException {
+        AutomationService automationManager = Framework
+                .getLocalService(AutomationService.class);
+        // Input setting
+        OperationContext ctx = new OperationContext(session);
+        ctx.setInput(input);
+        Object o = null;
+        // Setting parameters of the chain
+        try {
+            // Run Automation service
+            o = automationManager.run(ctx, operationId, params);
+        } catch (Exception e) {
+            LOG.error("Unable to run operation: " + operationId
+                    + " Exception: " + e.getMessage(), e);
+            throw new DigifactinException(e);
+        }
+        return o;
+    }
+
+    /**
+     * Read config value.
+     *
+     * @param session
+     * @param key
+     * @return
+     */
+    public static Serializable readConfigValue(CoreSession session, final String key) {
+        final List<Serializable> values = new ArrayList<>();
+        new UnrestrictedSessionRunner(session) {
+            @Override
+            public void run() {
+                DocumentModel conf = session.getDocument(new PathRef(
+                        CONFIG_PATH));
+                Serializable value = conf.getPropertyValue(key);
+                if (value != null) {
+                    values.add(value);
+                }
+            }
+        }.runUnrestricted();
+        if (!values.isEmpty()) {
+            return values.get(0);
+        }
+        return null;
     }
 }
 

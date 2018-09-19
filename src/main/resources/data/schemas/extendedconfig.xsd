@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.athento.com/ecm/schemas/renaultcustom/extendedConfig"
+    targetNamespace="http://www.athento.com/ecm/schemas/renaultcustom/extendedConfig">
+    <!-- helper XSD definitions for list types -->
+    <xs:complexType name="content">
+        <xs:sequence>
+            <xs:element name="encoding" type="xs:string" />
+            <xs:element name="mime-type" type="xs:string" />
+            <xs:element name="data" type="xs:base64Binary" />
+            <xs:element name="name" type="xs:string" />
+            <xs:element name="length" type="xs:long" />
+            <xs:element name="digest" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="stringList">
+        <xs:list itemType="xs:string" />
+    </xs:simpleType>
+    <xs:simpleType name="doubleList">
+        <xs:list itemType="xs:double" />
+    </xs:simpleType>
+    <xs:simpleType name="dateList">
+        <xs:list itemType="xs:date" />
+    </xs:simpleType>
+    <xs:simpleType name="integerList">
+        <xs:list itemType="xs:integer" />
+    </xs:simpleType>
+    <xs:simpleType name="booleanList">
+        <xs:list itemType="xs:boolean" />
+    </xs:simpleType>
+    <xs:complexType name="blobList">
+        <xs:sequence>
+            <xs:element name="item" type="nxs:content" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Extended Config: Digifacin-->
+    <xs:element name="url" type="xs:string" default="" />
+
+    <xs:element name="clientId" type="xs:string" default="" />
+    <xs:element name="username" type="xs:string" default="" />
+    <xs:element name="password" type="xs:string" default="" />
+
+    <xs:element name="certificate" type="xs:string" default="" />
+    <xs:element name="certruta" type="xs:string" default="" />
+    <xs:element name="folder" type="xs:string" default="" />
+    <xs:element name="name" type="xs:string" default="" />
+    <xs:element name="sha" type="xs:string" default="" />
+    <xs:element name="fv" type="xs:boolean" default="true" />
+    <xs:element name="imagen" type="xs:string" default="" />
+    <xs:element name="oivfv" type="xs:boolean" default="false" />
+    <xs:element name="iivftp" type="xs:boolean" default="false" />
+    <xs:element name="am" type="xs:boolean" default="false" />
+    <xs:element name="ameni" type="xs:boolean" default="false" />
+    <xs:element name="ptpfv" type="xs:boolean" default="false" />
+    <xs:element name="cvfv" type="xs:string" default="" />
+    <xs:element name="chfv" type="xs:string" default="" />
+    <xs:element name="altofv" type="xs:string" default="" />
+    <xs:element name="anchofv" type="xs:string" default="" />
+    <xs:element name="tp" type="xs:boolean" default="false" />
+    <xs:element name="utp" type="xs:string" default="" />
+    <xs:element name="e" type="xs:boolean" default="false" />
+    <xs:element name="euser" type="xs:string" default="" />
+    <xs:element name="eadmin" type="xs:string" default="" />
+    <xs:element name="st" type="xs:boolean" default="false" />
+    <xs:element name="stuser" type="xs:string" default="" />
+    <xs:element name="stpass" type="xs:string" default="" />
+    <xs:element name="sturl" type="xs:string" default="" />
+    <xs:element name="pdfa" type="xs:boolean" default="false" />
+    <xs:element name="fvp" type="xs:boolean" default="false" />
+    <xs:element name="pfv" type="xs:integer" />
+    <xs:element name="fvpp" type="xs:boolean" default="false" />
+    <xs:element name="fvup" type="xs:boolean" default="false" />
+    <xs:element name="mesdesde" type="xs:integer" />
+    <xs:element name="anyodesde" type="xs:integer" />
+    <xs:element name="tipoperiodo" type="xs:integer" default="" />
+
+
+
+
+</xs:schema>

@@ -37,12 +37,12 @@ public class PostValue {
     String sturl;
     boolean pdfa;
     boolean fvp;
-    int pfv;
+    Integer pfv;
     boolean fvpp;
     boolean fvup;
-    int mesdesde;
-    int anyiodesde;
-    int tipoperiodo;
+    Integer mesdesde;
+    Integer anyiodesde;
+    Long tipoperiodo;
     FormDataFile uploadedImage;
 
     public String getUser() {
@@ -269,11 +269,11 @@ public class PostValue {
         this.fvp = fvp;
     }
 
-    public int getPfv() {
+    public Integer getPfv() {
         return pfv;
     }
 
-    public void setPfv(int pfv) {
+    public void setPfv(Integer pfv) {
         this.pfv = pfv;
     }
 
@@ -293,27 +293,27 @@ public class PostValue {
         this.fvup = fvup;
     }
 
-    public int getMesdesde() {
+    public Integer getMesdesde() {
         return mesdesde;
     }
 
-    public void setMesdesde(int mesdesde) {
+    public void setMesdesde(Integer mesdesde) {
         this.mesdesde = mesdesde;
     }
 
-    public int getAnyiodesde() {
+    public Integer getAnyiodesde() {
         return anyiodesde;
     }
 
-    public void setAnyiodesde(int anyiodesde) {
+    public void setAnyiodesde(Integer anyiodesde) {
         this.anyiodesde = anyiodesde;
     }
 
-    public int getTipoperiodo() {
+    public Long getTipoperiodo() {
         return tipoperiodo;
     }
 
-    public void setTipoperiodo(int tipoperiodo) {
+    public void setTipoperiodo(Long tipoperiodo) {
         this.tipoperiodo = tipoperiodo;
     }
 
@@ -323,5 +323,46 @@ public class PostValue {
 
     public void setUploadedImage(FormDataFile uploadedImage) {
         this.uploadedImage = uploadedImage;
+    }
+
+    @Override
+    public String toString() {
+        return "PostValue{" +
+                "user='" + user + '\'' +
+                ", certificate='" + certificate + '\'' +
+                ", certruta='" + certruta + '\'' +
+                ", folder='" + folder + '\'' +
+                ", name='" + name + '\'' +
+                ", sha='" + sha + '\'' +
+                ", fv=" + fv +
+                ", imagen='" + imagen + '\'' +
+                ", oivfv=" + oivfv +
+                ", iivftp=" + iivftp +
+                ", am=" + am +
+                ", ameni=" + ameni +
+                ", ptpfv=" + ptpfv +
+                ", cvfv='" + cvfv + '\'' +
+                ", chfv='" + chfv + '\'' +
+                ", altofv='" + altofv + '\'' +
+                ", anchofv='" + anchofv + '\'' +
+                ", tp=" + tp +
+                ", utp='" + utp + '\'' +
+                ", e=" + e +
+                ", euser='" + euser + '\'' +
+                ", eadmin='" + eadmin + '\'' +
+                ", st=" + st +
+                ", stuser='" + stuser + '\'' +
+                ", stpass='" + stpass + '\'' +
+                ", sturl='" + sturl + '\'' +
+                ", pdfa=" + pdfa +
+                ", fvp=" + fvp +
+                ", pfv=" + pfv +
+                ", fvpp=" + fvpp +
+                ", fvup=" + fvup +
+                ", mesdesde=" + mesdesde +
+                ", anyiodesde=" + anyiodesde +
+                ", tipoperiodo=" + tipoperiodo +
+                ", uploadedImage=" + uploadedImage +
+                '}';
     }
 }

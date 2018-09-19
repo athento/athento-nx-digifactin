@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<component name="org.athento.nuxeo.digifactin.listener-contrib">
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+               point="listener">
+        <listener name="signContent" async="false" enabled="true"
+                  postCommit="false" priority="100"
+                  class="org.athento.nuxeo.digifactin.api.listener.SignContentListener">
+            <event>aboutToCreate</event>
+        </listener>
+
+    </extension>
+
+</component>

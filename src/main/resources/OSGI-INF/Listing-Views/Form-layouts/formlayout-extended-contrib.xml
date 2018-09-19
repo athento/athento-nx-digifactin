@@ -1,30 +1,610 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="org.athento.renault.extended-config"
+<component name="org.athento.nuxeo.digifactin.extended-config"
     version="1.0.0">
     <require>org.nuxeo.runtime.started</require>
 
     <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
-        <layout name="layout@formlayout-re-extendedconfig">
+        <layout name="layout@formlayout-digifactin-extendedconfig">
             <templates>
-                <template mode="any">/layouts/re_extendedconfig_widget_layout_template.xhtml</template>
+                <template mode="any">/layouts/extendedconfig_widget_layout_template.xhtml</template>
             </templates>
             <rows>
                 <row>
                     <properties mode="any">
                         <property name="nxl_colspan_0">1</property>
                     </properties>
-                    <widget>endpointFacturaQuitter</widget>
+                    <widget>url</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>clientId</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>username</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>password</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>certificate</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>certruta</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>folder</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>name</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>sha</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>fv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>imagen</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>oivfv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>iivftp</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>am</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>ameni</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>ptpfv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>cvfv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>chfv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>altofv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>anchofv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>tp</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>utp</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>e</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>euser</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>eadmin</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>st</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>stuser</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>stpass</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>sturl</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>pdfa</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>fvp</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>pfv</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>fvpp</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>fvup</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>mesdesde</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>anyodesde</widget>
+                </row>
+                <row>
+                    <properties mode="any">
+                        <property name="nxl_colspan_0">1</property>
+                    </properties>
+                    <widget>tipoperiodo</widget>
                 </row>
             </rows>
-            <widget name="endpointFacturaQuitter" type="text">
+            <widget name="url" type="text">
                 <labels>
-                    <label mode="any">label.extendedConfig.endpointFacturaQuitter
+                    <label mode="any">label.extendedConfig.digifactin.url
                     </label>
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>re_extendedconfig:endpointFacturaQuitter</field>
+                    <field>digiextendedconfig:url</field>
+                </fields>
+            </widget>
+            <widget name="clientId" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.clientId
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:clientId</field>
+                </fields>
+            </widget>
+            <widget name="username" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.username
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:username</field>
+                </fields>
+            </widget>
+            <widget name="password" type="secret">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.password
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:password</field>
+                </fields>
+                <properties widgetMode="edit">
+                    <property name="styleClass">dataInputText</property>
+                    <property name="redisplay">true</property>
+                </properties>
+            </widget>
+            <widget name="certificate" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.certificate
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:certificate</field>
+                </fields>
+            </widget>
+            <widget name="certruta" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.certruta
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:certruta</field>
+                </fields>
+            </widget>
+            <widget name="folder" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.folder
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:folder</field>
+                </fields>
+            </widget>
+            <widget name="name" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.name
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:name</field>
+                </fields>
+            </widget>
+            <widget name="sha" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.sha
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:sha</field>
+                </fields>
+            </widget>
+            <widget name="fv" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.fv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:fv</field>
+                </fields>
+            </widget>
+            <widget name="imagen" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.imagen
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:imagen</field>
+                </fields>
+            </widget>
+            <widget name="oivfv" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.oivfv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:oivfv</field>
+                </fields>
+            </widget>
+            <widget name="iivftp" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.iivftp
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:iivftp</field>
+                </fields>
+            </widget>
+            <widget name="am" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.am
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:am</field>
+                </fields>
+            </widget>
+            <widget name="ameni" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.ameni
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:ameni</field>
+                </fields>
+            </widget>
+            <widget name="ptpfv" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.ptpfv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:ptpfv</field>
+                </fields>
+            </widget>
+            <widget name="cvfv" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.cvfv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:cvfv</field>
+                </fields>
+            </widget>
+            <widget name="chfv" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.chfv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:chfv</field>
+                </fields>
+            </widget>
+            <widget name="altofv" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.altofv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:altofv</field>
+                </fields>
+            </widget>
+            <widget name="anchofv" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.anchofv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:anchofv</field>
+                </fields>
+            </widget>
+            <widget name="tp" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.tp
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:tp</field>
+                </fields>
+            </widget>
+            <widget name="utp" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.utp
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:utp</field>
+                </fields>
+            </widget>
+            <widget name="e" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.e
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:e</field>
+                </fields>
+            </widget>
+            <widget name="euser" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.euser
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:euser</field>
+                </fields>
+            </widget>
+            <widget name="eadmin" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.eadmin
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:eadmin</field>
+                </fields>
+            </widget>
+            <widget name="st" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.st
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:st</field>
+                </fields>
+            </widget>
+            <widget name="stuser" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.stuser
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:stuser</field>
+                </fields>
+            </widget>
+            <widget name="stpass" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.stpass
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:stpass</field>
+                </fields>
+            </widget>
+            <widget name="sturl" type="text">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.sturl
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:sturl</field>
+                </fields>
+            </widget>
+            <widget name="pdfa" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.pdfa
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:pdfa</field>
+                </fields>
+            </widget>
+            <widget name="fvp" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.fvp
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:fvp</field>
+                </fields>
+            </widget>
+            <widget name="pfv" type="int">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.pfv
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:pfv</field>
+                </fields>
+            </widget>
+            <widget name="fvpp" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.fvpp
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:fvpp</field>
+                </fields>
+            </widget>
+            <widget name="fvup" type="checkbox">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.fvup
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:fvup</field>
+                </fields>
+            </widget>
+            <widget name="mesdesde" type="int">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.mesdesde
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:mesdesde</field>
+                </fields>
+            </widget>
+            <widget name="anyodesde" type="int">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.anyiodesde
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:anyodesde</field>
+                </fields>
+            </widget>
+            <widget name="tipoperiodo" type="int">
+                <labels>
+                    <label mode="any">label.extendedConfig.digifactin.tipoperiodo
+                    </label>
+                </labels>
+                <translated>true</translated>
+                <fields>
+                    <field>digiextendedconfig:tipoperiodo</field>
                 </fields>
             </widget>
         </layout>

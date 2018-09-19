@@ -5,5 +5,9 @@ Bundle-Name: addon
 Require-Bundle: org.nuxeo.runtime
 Bundle-ManifestVersion: 2
 Bundle-Vendor: Athento
-Nuxeo-Component: OSGI-INF/Automation/Automation-chains/operation-contrib.xml
+Nuxeo-Component: OSGI-INF/Content-model/Schemas/schemas-contrib.xml,
+ OSGI-INF/Content-model/Documents/doctype-contrib.xml,
+ OSGI-INF/Listing-Views/Form-layouts/formlayout-extended-contrib.xml,
+ OSGI-INF/Automation/Automation-chains/operation-contrib.xml,
+ OSGI-INF/listener-contrib.xml
 Created-By: Athento

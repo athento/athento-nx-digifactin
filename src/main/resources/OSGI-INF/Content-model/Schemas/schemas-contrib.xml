@@ -6,8 +6,7 @@
 
 	<extension target="org.nuxeo.ecm.core.schema.TypeService"
 		point="schema">
-		<schema name="re_extendedconfig" prefix="re_extendedconfig" src="data/schemas/re_extendedconfig.xsd" />
-		<schema name="integration" prefix="integration" src="data/schemas/integration.xsd" />
+		<schema name="digiextendedconfig" prefix="digiextendedconfig" src="data/schemas/extendedconfig.xsd" />
 	</extension>
 
 </component>

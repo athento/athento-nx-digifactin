@@ -4,9 +4,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.digifactin.api.client.*;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
+import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
+import org.nuxeo.ecm.core.api.CoreSession;
 
 /**
  * Logout Digifactin.
@@ -31,6 +33,12 @@ public class LogoutOperation {
     protected String token;
 
     /**
+     * Session.
+     */
+    @Context
+    protected CoreSession session;
+
+    /**
      * Run, login Digifacting server.
      *
      * @return
@@ -41,7 +49,7 @@ public class LogoutOperation {
         if (LOG.isInfoEnabled()) {
             LOG.info("Running Login operation ...");
         }
-        DigifactinClient client = new DigifactinClientImpl();
+        DigifactinClient client = new DigifactinClientImpl(session);
         DigifactinResponse response = client.logout(username, token);
         if (response != null) {
             return String.valueOf(((LogoutResponse) response).getStatus());

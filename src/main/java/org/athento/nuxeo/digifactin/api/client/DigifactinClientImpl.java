@@ -8,7 +8,7 @@ import org.athento.nuxeo.digifactin.api.model.PostValue;
 import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
 import org.athento.nuxeo.digifactin.api.util.RestAPIClient;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.nuxeo.runtime.api.Framework;
+import org.nuxeo.ecm.core.api.CoreSession;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,13 +25,15 @@ public class DigifactinClientImpl implements DigifactinClient {
     private static final Log LOG = LogFactory.getLog(DigifactinClientImpl.class);
 
     private String digifactinURL;
+    private CoreSession session;
 
     /**
      * Constructor.
      */
-    public DigifactinClientImpl() {
+    public DigifactinClientImpl(CoreSession session) {
+        this.session = session;
         // Get Digifactin API URL
-        digifactinURL = Framework.getProperty("athento.digifactin.url");
+        digifactinURL = (String) DigifactinUtils.readConfigValue(this.session, "digiextendedconfig:url");
     }
 
     /**
@@ -137,13 +139,19 @@ public class DigifactinClientImpl implements DigifactinClient {
         try {
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/signcertified", headers, data);
             if (apiResponse != null) {
-                digifactinResponse.setStatusCode(apiResponse.getStatus());
                 ObjectMapper mapper = new ObjectMapper();
                 String result = apiResponse.getEntity(String.class);
+                LOG.info("Response: " + result);
+                digifactinResponse.setStatusCode(apiResponse.getStatus());
                 if (apiResponse.getStatus() == StatusCode.UNAUTHORIZED) {
                     digifactinResponse.setsError("No authorizado");
-                } else {
+                } else if (apiResponse.getStatus() == StatusCode.ERROR_CON_MENSAJE) {
+                    ErrorMessageResponse tmpMsg = mapper.readValue(result, ErrorMessageResponse.class);
+                    digifactinResponse.setsError(tmpMsg.getMessage());
+                } else if (apiResponse.getStatus() == StatusCode.FIRMADO_CORRECTAMENTE) {
                     digifactinResponse = mapper.readValue(result, SignCertifiedResponse.class);
+                } else {
+                    digifactinResponse.setsError("Generic error");
                 }
                 return digifactinResponse;
             }

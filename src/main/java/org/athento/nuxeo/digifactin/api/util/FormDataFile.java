@@ -1,12 +1,14 @@
 package org.athento.nuxeo.digifactin.api.util;
 
+import java.io.File;
+
 /**
  * Form data file.
  */
 public class FormDataFile {
 
     String mimetype;
-    byte [] content;
+    File file;
 
     public String getMimetype() {
         return mimetype;
@@ -16,11 +18,11 @@ public class FormDataFile {
         this.mimetype = mimetype;
     }
 
-    public byte[] getContent() {
-        return content;
+    public File getFile() {
+        return file;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setFile(File file) {
+        this.file = file;
     }
 }
