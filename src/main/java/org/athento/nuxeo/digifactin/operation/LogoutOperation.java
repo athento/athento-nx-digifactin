@@ -2,7 +2,10 @@ package org.athento.nuxeo.digifactin.operation;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.athento.nuxeo.digifactin.api.client.*;
+import org.athento.nuxeo.digifactin.api.client.DigifactinClient;
+import org.athento.nuxeo.digifactin.api.client.DigifactinClientImpl;
+import org.athento.nuxeo.digifactin.api.client.DigifactinResponse;
+import org.athento.nuxeo.digifactin.api.client.LogoutResponse;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;

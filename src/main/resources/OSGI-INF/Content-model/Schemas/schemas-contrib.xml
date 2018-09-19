@@ -6,7 +6,7 @@
 
 	<extension target="org.nuxeo.ecm.core.schema.TypeService"
 		point="schema">
-		<schema name="digiextendedconfig" prefix="digiextendedconfig" src="data/schemas/extendedconfig.xsd" />
+		<schema name="digifactinconfig" prefix="digifactinconfig" src="data/schemas/digifactinconfig.xsd" />
 	</extension>
 
 </component>

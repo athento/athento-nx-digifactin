@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component
+	name="org.athento.nuxeo.digifactin.structure-templates"
+	version="1.0.0">
+
+	<require>org.nuxeo.runtime.started</require>
+
+	<extension
+		target="org.nuxeo.ecm.platform.content.template.service.ContentTemplateService"
+		point="factoryBinding">
+		<factoryBinding name="RootFactory" factoryName="SimpleTemplateRootFactory"
+			targetType="Root">
+			<template>
+				<templateItem typeName="DigifactinConfig" id="DigifactinConfig"
+					title="DigifactinConfig" description="Digifactin Configuration" />
+			</template>
+		</factoryBinding>
+	</extension>
+
+</component>

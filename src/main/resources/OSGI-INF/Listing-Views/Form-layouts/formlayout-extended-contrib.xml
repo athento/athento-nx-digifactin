@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="org.athento.nuxeo.digifactin.extended-config"
+<component name="org.athento.nuxeo.digifactin.layouts-contrib"
     version="1.0.0">
     <require>org.nuxeo.runtime.started</require>
 
     <extension target="org.nuxeo.ecm.platform.forms.layout.WebLayoutManager" point="layouts">
-        <layout name="layout@formlayout-digifactin-extendedconfig">
+        <layout name="digifactin">
             <templates>
-                <template mode="any">/layouts/extendedconfig_widget_layout_template.xhtml</template>
+                <template mode="any">/layouts/digifactinconfig_widget_layout_template.xhtml</template>
             </templates>
             <rows>
                 <row>
@@ -240,7 +240,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:url</field>
+                    <field>digifactinconfig:url</field>
                 </fields>
             </widget>
             <widget name="clientId" type="text">
@@ -250,7 +250,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:clientId</field>
+                    <field>digifactinconfig:clientId</field>
                 </fields>
             </widget>
             <widget name="username" type="text">
@@ -260,7 +260,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:username</field>
+                    <field>digifactinconfig:username</field>
                 </fields>
             </widget>
             <widget name="password" type="secret">
@@ -270,7 +270,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:password</field>
+                    <field>digifactinconfig:password</field>
                 </fields>
                 <properties widgetMode="edit">
                     <property name="styleClass">dataInputText</property>
@@ -284,7 +284,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:certificate</field>
+                    <field>digifactinconfig:certificate</field>
                 </fields>
             </widget>
             <widget name="certruta" type="text">
@@ -294,7 +294,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:certruta</field>
+                    <field>digifactinconfig:certruta</field>
                 </fields>
             </widget>
             <widget name="folder" type="text">
@@ -304,7 +304,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:folder</field>
+                    <field>digifactinconfig:folder</field>
                 </fields>
             </widget>
             <widget name="name" type="text">
@@ -314,7 +314,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:name</field>
+                    <field>digifactinconfig:name</field>
                 </fields>
             </widget>
             <widget name="sha" type="text">
@@ -324,7 +324,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:sha</field>
+                    <field>digifactinconfig:sha</field>
                 </fields>
             </widget>
             <widget name="fv" type="checkbox">
@@ -334,7 +334,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:fv</field>
+                    <field>digifactinconfig:fv</field>
                 </fields>
             </widget>
             <widget name="imagen" type="text">
@@ -344,7 +344,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:imagen</field>
+                    <field>digifactinconfig:imagen</field>
                 </fields>
             </widget>
             <widget name="oivfv" type="checkbox">
@@ -354,7 +354,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:oivfv</field>
+                    <field>digifactinconfig:oivfv</field>
                 </fields>
             </widget>
             <widget name="iivftp" type="checkbox">
@@ -364,7 +364,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:iivftp</field>
+                    <field>digifactinconfig:iivftp</field>
                 </fields>
             </widget>
             <widget name="am" type="checkbox">
@@ -374,7 +374,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:am</field>
+                    <field>digifactinconfig:am</field>
                 </fields>
             </widget>
             <widget name="ameni" type="checkbox">
@@ -384,7 +384,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:ameni</field>
+                    <field>digifactinconfig:ameni</field>
                 </fields>
             </widget>
             <widget name="ptpfv" type="checkbox">
@@ -394,7 +394,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:ptpfv</field>
+                    <field>digifactinconfig:ptpfv</field>
                 </fields>
             </widget>
             <widget name="cvfv" type="text">
@@ -404,7 +404,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:cvfv</field>
+                    <field>digifactinconfig:cvfv</field>
                 </fields>
             </widget>
             <widget name="chfv" type="text">
@@ -414,7 +414,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:chfv</field>
+                    <field>digifactinconfig:chfv</field>
                 </fields>
             </widget>
             <widget name="altofv" type="text">
@@ -424,7 +424,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:altofv</field>
+                    <field>digifactinconfig:altofv</field>
                 </fields>
             </widget>
             <widget name="anchofv" type="text">
@@ -434,7 +434,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:anchofv</field>
+                    <field>digifactinconfig:anchofv</field>
                 </fields>
             </widget>
             <widget name="tp" type="checkbox">
@@ -444,7 +444,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:tp</field>
+                    <field>digifactinconfig:tp</field>
                 </fields>
             </widget>
             <widget name="utp" type="text">
@@ -454,7 +454,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:utp</field>
+                    <field>digifactinconfig:utp</field>
                 </fields>
             </widget>
             <widget name="e" type="checkbox">
@@ -464,7 +464,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:e</field>
+                    <field>digifactinconfig:e</field>
                 </fields>
             </widget>
             <widget name="euser" type="text">
@@ -474,7 +474,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:euser</field>
+                    <field>digifactinconfig:euser</field>
                 </fields>
             </widget>
             <widget name="eadmin" type="text">
@@ -484,7 +484,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:eadmin</field>
+                    <field>digifactinconfig:eadmin</field>
                 </fields>
             </widget>
             <widget name="st" type="checkbox">
@@ -494,7 +494,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:st</field>
+                    <field>digifactinconfig:st</field>
                 </fields>
             </widget>
             <widget name="stuser" type="text">
@@ -504,7 +504,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:stuser</field>
+                    <field>digifactinconfig:stuser</field>
                 </fields>
             </widget>
             <widget name="stpass" type="text">
@@ -514,7 +514,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:stpass</field>
+                    <field>digifactinconfig:stpass</field>
                 </fields>
             </widget>
             <widget name="sturl" type="text">
@@ -524,7 +524,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:sturl</field>
+                    <field>digifactinconfig:sturl</field>
                 </fields>
             </widget>
             <widget name="pdfa" type="checkbox">
@@ -534,7 +534,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:pdfa</field>
+                    <field>digifactinconfig:pdfa</field>
                 </fields>
             </widget>
             <widget name="fvp" type="checkbox">
@@ -544,7 +544,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:fvp</field>
+                    <field>digifactinconfig:fvp</field>
                 </fields>
             </widget>
             <widget name="pfv" type="int">
@@ -554,7 +554,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:pfv</field>
+                    <field>digifactinconfig:pfv</field>
                 </fields>
             </widget>
             <widget name="fvpp" type="checkbox">
@@ -564,7 +564,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:fvpp</field>
+                    <field>digifactinconfig:fvpp</field>
                 </fields>
             </widget>
             <widget name="fvup" type="checkbox">
@@ -574,7 +574,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:fvup</field>
+                    <field>digifactinconfig:fvup</field>
                 </fields>
             </widget>
             <widget name="mesdesde" type="int">
@@ -584,7 +584,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:mesdesde</field>
+                    <field>digifactinconfig:mesdesde</field>
                 </fields>
             </widget>
             <widget name="anyodesde" type="int">
@@ -594,7 +594,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:anyodesde</field>
+                    <field>digifactinconfig:anyodesde</field>
                 </fields>
             </widget>
             <widget name="tipoperiodo" type="int">
@@ -604,7 +604,7 @@
                 </labels>
                 <translated>true</translated>
                 <fields>
-                    <field>digiextendedconfig:tipoperiodo</field>
+                    <field>digifactinconfig:tipoperiodo</field>
                 </fields>
             </widget>
         </layout>

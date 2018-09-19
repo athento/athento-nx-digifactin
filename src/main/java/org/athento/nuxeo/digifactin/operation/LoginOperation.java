@@ -7,16 +7,11 @@ import org.athento.nuxeo.digifactin.api.client.DigifactinClientImpl;
 import org.athento.nuxeo.digifactin.api.client.DigifactinResponse;
 import org.athento.nuxeo.digifactin.api.client.LoginUserResponse;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
-import org.athento.nuxeo.digifactin.api.model.PostValue;
-import org.athento.nuxeo.digifactin.api.util.FormDataFile;
-import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
 import org.nuxeo.ecm.automation.core.annotations.Param;
-import org.nuxeo.ecm.core.api.*;
-
-import java.io.IOException;
+import org.nuxeo.ecm.core.api.CoreSession;
 
 /**
  * Login in Digifactin.

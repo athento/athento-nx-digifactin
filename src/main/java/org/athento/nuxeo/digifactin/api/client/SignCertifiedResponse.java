@@ -1,7 +1,5 @@
 package org.athento.nuxeo.digifactin.api.client;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
 /**
  * Digifact response.
  */

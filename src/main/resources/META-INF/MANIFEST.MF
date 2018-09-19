@@ -9,5 +9,7 @@ Nuxeo-Component: OSGI-INF/Content-model/Schemas/schemas-contrib.xml,
  OSGI-INF/Content-model/Documents/doctype-contrib.xml,
  OSGI-INF/Listing-Views/Form-layouts/formlayout-extended-contrib.xml,
  OSGI-INF/Automation/Automation-chains/operation-contrib.xml,
- OSGI-INF/listener-contrib.xml
+ OSGI-INF/listener-contrib.xml,
+ OSGI-INF/Automation/User-actions/actions-contrib.xml,
+ OSGI-INF/structure-templates-contrib.xml
 Created-By: Athento

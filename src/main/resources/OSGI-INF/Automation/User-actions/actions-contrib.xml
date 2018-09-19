@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="org.athento.nuxeo.addon.actions" version="1.0.0">
+<component name="org.athento.nuxeo.digifactin.actions-contrib" version="1.0.0">
 	<require>org.nuxeo.runtime.started</require>
 
 	<extension target="org.nuxeo.ecm.platform.actions.ActionService"
 		point="actions">
+
+		<action id="Digifactin" link="/view_admin-fragment.xhtml" label="admcommand.digifactin"
+				order="100">
+			<category>NUXEO_ADMIN</category>
+			<filter-id>only_for_manager</filter-id>
+		</action>
+
+        <action id="DigifactinConfig" link="/incl/digifactin/admin.xhtml"
+                type="admin_rest_document_link"
+                label="tab.digifacin.admin" order="10">
+            <category>Digifactin_sub_tab</category>
+            <filter-id>only_for_manager</filter-id>
+        </action>
 
 	</extension>
 
