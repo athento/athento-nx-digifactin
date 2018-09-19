@@ -211,11 +211,11 @@ public class SignContentListener implements EventListener {
         boolean hasSign = false;
         if (doc != null) {
             try {
-                Boolean digifactEnabled = (Boolean) doc.getPropertyValue("firmado:digifactin");
+                Boolean digifactEnabled = (Boolean) doc.getPropertyValue("firma:digifactin");
                 return digifactEnabled != null && digifactEnabled;
             } catch (PropertyNotFoundException e) {
                 LOG.trace("Unable to check digifact sign flag because " +
-                        "property 'firmado:digifactin' is not found in the document type. Please, ensure it is included.");
+                        "property 'firma:digifactin' is not found in the document type. Please, ensure it is included.");
             }
         }
         return hasSign;
