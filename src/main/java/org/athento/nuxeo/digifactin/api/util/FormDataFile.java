@@ -7,8 +7,17 @@ import java.io.File;
  */
 public class FormDataFile {
 
+    String filename;
     String mimetype;
     File file;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public String getMimetype() {
         return mimetype;

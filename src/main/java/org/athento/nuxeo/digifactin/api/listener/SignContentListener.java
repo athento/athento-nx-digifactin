@@ -194,6 +194,7 @@ public class SignContentListener implements EventListener {
         postValue.setAnyodesde((Integer) getProperty(session, "digifactinconfig:anyodesde", 0));
         postValue.setTipoperiodo((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0));
         FormDataFile image = new FormDataFile();
+        image.setFilename(blob.getFilename());
         image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);

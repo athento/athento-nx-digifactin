@@ -255,6 +255,7 @@ public class SignOperation {
         postValue.setTipoperiodo(tipoPeriodo);
         FormDataFile image = new FormDataFile();
         image.setFile(blob.getFile());
+        image.setFilename(blob.getFilename());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);
         return postValue;
