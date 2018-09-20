@@ -31,14 +31,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by victorsanchez on 26/10/16.
+ * Digifactin utils.
  */
 public final class DigifactinUtils {
 
     /** Log. */
     private static final Log LOG = LogFactory.getLog(DigifactinUtils.class);
 
-    public static final String CONFIG_PATH = "/ExtendedConfig";
+    public static final String CONFIG_PATH = "/DigifactinConfig";
 
     /**
      * Read extended config properties.

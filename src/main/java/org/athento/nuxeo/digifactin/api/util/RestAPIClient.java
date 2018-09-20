@@ -58,9 +58,7 @@ public final class RestAPIClient {
         for (Map.Entry<String, Object> data : formData.entrySet()) {
             Object value = data.getValue();
             if (value instanceof FormDataFile) {
-                FileDataBodyPart bodyFile = new FileDataBodyPart();
-                bodyFile.setName(((FormDataFile) value).getFile().getName());
-                bodyFile.setFileEntity(((FormDataFile) value).getFile(), MediaType.valueOf(((FormDataFile) value).getMimetype()));
+                FileDataBodyPart bodyFile = new FileDataBodyPart(((FormDataFile) value).getFile().getName(), ((FormDataFile) value).getFile());
                 formMultipart.bodyPart(bodyFile);
             } else {
                 formMultipart.field(data.getKey(), String.valueOf(value));

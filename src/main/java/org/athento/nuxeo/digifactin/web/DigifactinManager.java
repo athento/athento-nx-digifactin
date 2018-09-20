@@ -2,6 +2,7 @@ package org.athento.nuxeo.digifactin.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -40,7 +41,7 @@ public class DigifactinManager implements Serializable {
 
     public DocumentModel getDigifactinConfigDoc() {
         if (digifactinConfigDoc == null) {
-            digifactinConfigDoc = documentManager.getDocument(new PathRef("/DigifactinConfig"));
+            digifactinConfigDoc = documentManager.getDocument(new PathRef(DigifactinUtils.CONFIG_PATH));
         }
         return digifactinConfigDoc;
     }
