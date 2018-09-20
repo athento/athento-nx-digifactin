@@ -48,9 +48,9 @@ public class SignContentListener implements EventListener {
                 CoreSession session = ctxt.getCoreSession();
                 digifactinClient = new DigifactinClientImpl(session);
                 // Get default client information
-                String clientId = (String) getProperty(session, "digiextendedconfig:clientId");
-                String username = (String) getProperty(session, "digiextendedconfig:username");
-                String password = (String) getProperty(session, "digiextendedconfig:password");
+                String clientId = (String) getProperty(session, "digifactinconfig:clientId");
+                String username = (String) getProperty(session, "digifactinconfig:username");
+                String password = (String) getProperty(session, "digifactinconfig:password");
                 // Token
                 String authToken = null;
                 try {
@@ -159,40 +159,40 @@ public class SignContentListener implements EventListener {
      */
     private PostValue getPostValue(CoreSession session, Blob blob) throws IOException {
         PostValue postValue = new PostValue();
-        postValue.setUser((String) getProperty(session, "digiextendedconfig:username"));
-        postValue.setCertificate((String) getProperty(session, "digiextendedconfig:certificate"));
-        postValue.setCertruta((String) getProperty(session, "digiextendedconfig:certruta"));
-        postValue.setFolder((String) getProperty(session, "digiextendedconfig:folder"));
-        postValue.setName((String) getProperty(session, "digiextendedconfig:name"));
-        postValue.setSha((String) getProperty(session, "digiextendedconfig:sha"));
-        postValue.setFv((Boolean) getProperty(session, "digiextendedconfig:fv", false));
-        postValue.setImagen((String) getProperty(session, "digiextendedconfig:imagen"));
-        postValue.setOivfv((Boolean) getProperty(session, "digiextendedconfig:oivfv", false));
-        postValue.setIivftp((Boolean) getProperty(session, "digiextendedconfig:iivftp", false));
-        postValue.setAm((Boolean) getProperty(session, "digiextendedconfig:am", false));
-        postValue.setAmeni((Boolean) getProperty(session, "digiextendedconfig:ameni", false));
-        postValue.setPtpfv((Boolean) getProperty(session, "digiextendedconfig:ptpfv", false));
-        postValue.setCvfv((String) getProperty(session, "digiextendedconfig:cvfv"));
-        postValue.setChfv((String) getProperty(session, "digiextendedconfig:chfv"));
-        postValue.setAltofv((String) getProperty(session, "digiextendedconfig:altofv"));
-        postValue.setAnchofv((String) getProperty(session, "digiextendedconfig:anchofv"));
-        postValue.setTp((Boolean) getProperty(session, "digiextendedconfig:tp", false));
-        postValue.setUtp((String) getProperty(session, "digiextendedconfig:utp"));
-        postValue.setE((Boolean) getProperty(session, "digiextendedconfig:e", false));
-        postValue.setEuser((String) getProperty(session, "digiextendedconfig:euser"));
-        postValue.setEadmin((String) getProperty(session, "digiextendedconfig:eadmin"));
-        postValue.setSt((Boolean) getProperty(session, "digiextendedconfig:st", false));
-        postValue.setStuser((String) getProperty(session, "digiextendedconfig:stuser"));
-        postValue.setStpass((String) getProperty(session, "digiextendedconfig:stpass"));
-        postValue.setSturl((String) getProperty(session, "digiextendedconfig:sturl"));
-        postValue.setPdfa((Boolean) getProperty(session, "digiextendedconfig:pdfa", false));
-        postValue.setFvp((Boolean) getProperty(session, "digiextendedconfig:fvp", false));
-        postValue.setPfv((Integer) getProperty(session, "digiextendedconfig:pfv", 0));
-        postValue.setFvpp((Boolean) getProperty(session, "digiextendedconfig:fvpp", false));
-        postValue.setFvup((Boolean) getProperty(session, "digiextendedconfig:fvup", false));
-        postValue.setMesdesde((Integer) getProperty(session, "digiextendedconfig:mesdesde", 0));
-        postValue.setAnyiodesde((Integer) getProperty(session, "digiextendedconfig:anyodesde", 0));
-        postValue.setTipoperiodo((Long) getProperty(session, "digiextendedconfig:tipoperiodo", 0));
+        postValue.setUser((String) getProperty(session, "digifactinconfig:username"));
+        postValue.setCertificate((String) getProperty(session, "digifactinconfig:certificate"));
+        postValue.setCertruta((String) getProperty(session, "digifactinconfig:certruta"));
+        postValue.setFolder((String) getProperty(session, "digifactinconfig:folder"));
+        postValue.setName((String) getProperty(session, "digifactinconfig:name"));
+        postValue.setSha((String) getProperty(session, "digifactinconfig:sha"));
+        postValue.setFv((Boolean) getProperty(session, "digifactinconfig:fv", false));
+        postValue.setImagen((String) getProperty(session, "digifactinconfig:imagen"));
+        postValue.setOivfv((Boolean) getProperty(session, "digifactinconfig:oivfv", false));
+        postValue.setIivftp((Boolean) getProperty(session, "digifactinconfig:iivftp", false));
+        postValue.setAm((Boolean) getProperty(session, "digifactinconfig:am", false));
+        postValue.setAmeni((Boolean) getProperty(session, "digifactinconfig:ameni", false));
+        postValue.setPtpfv((Boolean) getProperty(session, "digifactinconfig:ptpfv", false));
+        postValue.setCvfv((String) getProperty(session, "digifactinconfig:cvfv"));
+        postValue.setChfv((String) getProperty(session, "digifactinconfig:chfv"));
+        postValue.setAltofv((String) getProperty(session, "digifactinconfig:altofv"));
+        postValue.setAnchofv((String) getProperty(session, "digifactinconfig:anchofv"));
+        postValue.setTp((Boolean) getProperty(session, "digifactinconfig:tp", false));
+        postValue.setUtp((String) getProperty(session, "digifactinconfig:utp"));
+        postValue.setE((Boolean) getProperty(session, "digifactinconfig:e", false));
+        postValue.setEuser((String) getProperty(session, "digifactinconfig:euser"));
+        postValue.setEadmin((String) getProperty(session, "digifactinconfig:eadmin"));
+        postValue.setSt((Boolean) getProperty(session, "digifactinconfig:st", false));
+        postValue.setStuser((String) getProperty(session, "digifactinconfig:stuser"));
+        postValue.setStpass((String) getProperty(session, "digifactinconfig:stpass"));
+        postValue.setSturl((String) getProperty(session, "digifactinconfig:sturl"));
+        postValue.setPdfa((Boolean) getProperty(session, "digifactinconfig:pdfa", false));
+        postValue.setFvp((Boolean) getProperty(session, "digifactinconfig:fvp", false));
+        postValue.setPfv((Integer) getProperty(session, "digifactinconfig:pfv", 0));
+        postValue.setFvpp((Boolean) getProperty(session, "digifactinconfig:fvpp", false));
+        postValue.setFvup((Boolean) getProperty(session, "digifactinconfig:fvup", false));
+        postValue.setMesdesde((Integer) getProperty(session, "digifactinconfig:mesdesde", 0));
+        postValue.setAnyiodesde((Integer) getProperty(session, "digifactinconfig:anyodesde", 0));
+        postValue.setTipoperiodo((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0));
         FormDataFile image = new FormDataFile();
         image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
@@ -211,7 +211,7 @@ public class SignContentListener implements EventListener {
         boolean hasSign = false;
         if (doc != null) {
             try {
-                Boolean digifactEnabled = (Boolean) doc.getPropertyValue("firmado:digifactin");
+                Boolean digifactEnabled = (Boolean) doc.getPropertyValue("firma:digifactin");
                 return digifactEnabled != null && digifactEnabled;
             } catch (PropertyNotFoundException e) {
                 LOG.trace("Unable to check digifact sign flag because " +

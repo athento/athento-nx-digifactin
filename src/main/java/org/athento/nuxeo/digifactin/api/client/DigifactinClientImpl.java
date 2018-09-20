@@ -33,7 +33,7 @@ public class DigifactinClientImpl implements DigifactinClient {
     public DigifactinClientImpl(CoreSession session) {
         this.session = session;
         // Get Digifactin API URL
-        digifactinURL = (String) DigifactinUtils.readConfigValue(this.session, "digiextendedconfig:url");
+        digifactinURL = (String) DigifactinUtils.readConfigValue(this.session, "digifactinconfig:url");
     }
 
     /**
