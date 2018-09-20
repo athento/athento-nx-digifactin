@@ -171,7 +171,7 @@ public final class DigifactinUtils {
         data.put("FVPP", postValue.isFvpp());
         data.put("FVUP", postValue.isFvup());
         data.put("MESDESDE", postValue.getMesdesde());
-        data.put("ANYODESDE", postValue.getAnyiodesde());
+        data.put("ANYODESDE", postValue.getAnyodesde());
         data.put("TIPOPERIODO", postValue.getTipoperiodo());
         data.put("UploadedImage", postValue.getUploadedImage());
         return data;

@@ -191,7 +191,7 @@ public class SignContentListener implements EventListener {
         postValue.setFvpp((Boolean) getProperty(session, "digifactinconfig:fvpp", false));
         postValue.setFvup((Boolean) getProperty(session, "digifactinconfig:fvup", false));
         postValue.setMesdesde((Integer) getProperty(session, "digifactinconfig:mesdesde", 0));
-        postValue.setAnyiodesde((Integer) getProperty(session, "digifactinconfig:anyodesde", 0));
+        postValue.setAnyodesde((Integer) getProperty(session, "digifactinconfig:anyodesde", 0));
         postValue.setTipoperiodo((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0));
         FormDataFile image = new FormDataFile();
         image.setFile(blob.getFile());

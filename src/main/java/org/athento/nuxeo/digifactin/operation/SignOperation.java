@@ -251,7 +251,7 @@ public class SignOperation {
         postValue.setFvpp(fvpp);
         postValue.setFvup(fvup);
         postValue.setMesdesde(mesdesde);
-        postValue.setAnyiodesde(anyodesde);
+        postValue.setAnyodesde(anyodesde);
         postValue.setTipoperiodo(tipoPeriodo);
         FormDataFile image = new FormDataFile();
         image.setFile(blob.getFile());

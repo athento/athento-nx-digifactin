@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.nuxeo.ecm.core.api.CoreSession;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -144,7 +145,7 @@ public class DigifactinClientImpl implements DigifactinClient {
                 LOG.info("Response: " + result);
                 digifactinResponse.setStatusCode(apiResponse.getStatus());
                 if (apiResponse.getStatus() == StatusCode.UNAUTHORIZED) {
-                    digifactinResponse.setsError("No authorizado");
+                    digifactinResponse.setsError("Unauthorized");
                 } else if (apiResponse.getStatus() == StatusCode.ERROR_CON_MENSAJE) {
                     ErrorMessageResponse tmpMsg = mapper.readValue(result, ErrorMessageResponse.class);
                     digifactinResponse.setsError(tmpMsg.getMessage());
@@ -155,7 +156,7 @@ public class DigifactinClientImpl implements DigifactinClient {
                 }
                 return digifactinResponse;
             }
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             throw new DigifactinException(e);
         }
         return digifactinResponse;

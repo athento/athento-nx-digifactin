@@ -41,7 +41,7 @@ public class PostValue {
     boolean fvpp;
     boolean fvup;
     Integer mesdesde;
-    Integer anyiodesde;
+    Integer anyodesde;
     Long tipoperiodo;
     FormDataFile uploadedImage;
 
@@ -301,12 +301,12 @@ public class PostValue {
         this.mesdesde = mesdesde;
     }
 
-    public Integer getAnyiodesde() {
-        return anyiodesde;
+    public Integer getAnyodesde() {
+        return anyodesde;
     }
 
-    public void setAnyiodesde(Integer anyiodesde) {
-        this.anyiodesde = anyiodesde;
+    public void setAnyodesde(Integer anyodesde) {
+        this.anyodesde = anyodesde;
     }
 
     public Long getTipoperiodo() {
@@ -360,7 +360,7 @@ public class PostValue {
                 ", fvpp=" + fvpp +
                 ", fvup=" + fvup +
                 ", mesdesde=" + mesdesde +
-                ", anyiodesde=" + anyiodesde +
+                ", anyodesde=" + anyodesde +
                 ", tipoperiodo=" + tipoperiodo +
                 ", uploadedImage=" + uploadedImage +
                 '}';

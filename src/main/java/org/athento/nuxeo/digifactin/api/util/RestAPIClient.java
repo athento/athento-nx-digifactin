@@ -6,6 +6,8 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.client.urlconnection.HTTPSProperties;
+import com.sun.jersey.core.header.ContentDisposition;
+import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.core.impl.provider.entity.FileProvider;
 import com.sun.jersey.core.impl.provider.entity.StringProvider;
 import com.sun.jersey.multipart.FormDataMultiPart;
@@ -20,6 +22,7 @@ import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.security.cert.X509Certificate;
+import java.text.ParseException;
 import java.util.Map;
 
 /**
@@ -43,7 +46,7 @@ public final class RestAPIClient {
      * @param formData
      * @throws IOException on error
      */
-    public static ClientResponse doPost(String url, Map<String, Object> headers, Map<String, Object> formData) throws IOException {
+    public static ClientResponse doPost(String url, Map<String, Object> headers, Map<String, Object> formData) throws IOException, ParseException {
         ClientConfig config = new DefaultClientConfig();
         config.getClasses().add(MultiPartWriter.class);
         config.getClasses().add(StringProvider.class);
@@ -58,7 +61,11 @@ public final class RestAPIClient {
         for (Map.Entry<String, Object> data : formData.entrySet()) {
             Object value = data.getValue();
             if (value instanceof FormDataFile) {
-                FileDataBodyPart bodyFile = new FileDataBodyPart(((FormDataFile) value).getFile().getName(), ((FormDataFile) value).getFile());
+                String name = data.getKey();
+                String filename = ((FormDataFile) value).getFile().getName();
+                FileDataBodyPart bodyFile = new FileDataBodyPart("file", ((FormDataFile) value).getFile());
+                ContentDisposition cd = FormDataContentDisposition.name(name).fileName(filename).build();
+                bodyFile.setContentDisposition(cd);
                 formMultipart.bodyPart(bodyFile);
             } else {
                 formMultipart.field(data.getKey(), String.valueOf(value));
