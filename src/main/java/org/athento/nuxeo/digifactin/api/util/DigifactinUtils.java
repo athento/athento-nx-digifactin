@@ -25,6 +25,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
@@ -232,6 +233,16 @@ public final class DigifactinUtils {
             return values.get(0);
         }
         return null;
+    }
+
+    /**
+     * Sanitize folder to absolute path from digifactin response.
+     *
+     * @param folder
+     * @return
+     */
+    public static String sanitizeFile(String folder) {
+        return File.separator + folder.replace("\\", File.separator).replace("\r\n", "");
     }
 }
 

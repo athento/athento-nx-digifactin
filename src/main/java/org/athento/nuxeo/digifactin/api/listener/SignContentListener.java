@@ -11,11 +11,13 @@ import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.api.model.PropertyNotFoundException;
 import org.nuxeo.ecm.core.event.Event;
 import org.nuxeo.ecm.core.event.EventListener;
 import org.nuxeo.ecm.core.event.impl.DocumentEventContext;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -137,15 +139,25 @@ public class SignContentListener implements EventListener {
         if (digifactinClient == null) {
             throw new DigifactinException("Client is not initializated");
         }
-        LOG.info("Signing blob " + blob.getFilename() + ", " + blob.getMimeType());
         DigifactinResponse response = digifactinClient.signCertified(authToken, getPostValue(session, blob));
         if (response != null) {
-            LOG.info("Response " + response);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Response " + response);
+            }
             if (((SignCertifiedResponse) response).getStatusCode() != StatusCode.FIRMADO_CORRECTAMENTE) {
                 throw new DigifactinException(((SignCertifiedResponse) response).getsError());
             }
+            // Getting signed file from Folder into response
+            String folderWithFile = ((SignCertifiedResponse) response).getFolder();
+            File signedFile = new File(DigifactinUtils.sanitizeFile(folderWithFile));
+            LOG.info("Signed file " + signedFile);
+            if (!signedFile.exists()) {
+                throw new DigifactinException("Signed file is not found: " + signedFile);
+            } else {
+                // Update blob with signed file
+                blob = new FileBlob(signedFile);
+            }
         }
-        // TODO: Getting blob from Digifactin and return
         return blob;
     }
 
@@ -198,7 +210,6 @@ public class SignContentListener implements EventListener {
         image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);
-        LOG.info("PostValue " + postValue);
         return postValue;
     }
 
