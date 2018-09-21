@@ -72,14 +72,14 @@ public class SignContentListener implements EventListener {
                     LOG.error("Unable to sign with Digifactin", e);
                     event.markRollBack();
                     throw new NuxeoException(e);
-                } finally {
+                } /*finally {
                     try {
                         digifactinClient.logout(username, authToken);
                         LOG.info("Logout OK for " + authToken);
                     } catch (DigifactinException e) {
                         LOG.error("Unable to do logout", e);
                     }
-                }
+                }*/
             }
         }
     }
@@ -152,7 +152,7 @@ public class SignContentListener implements EventListener {
             // Getting signed file from Folder into response
             String folderWithFile = ((SignCertifiedResponse) response).getFolder();
             // Get signed file given the fetch mode
-            File signedFile = null;
+            File signedFile;
             String fetchMode = (String) getProperty(session, "digifactinconfig:fetchMode");
             if (DigifactinUtils.FETCHMODE_FILESYSTEM.equals(fetchMode)) {
                 signedFile = new File(DigifactinUtils.sanitizeFile(folderWithFile));
@@ -163,12 +163,24 @@ public class SignContentListener implements EventListener {
             } else {
                 // Download signed file
                 DigifactinResponse downloadResponse = digifactinClient.download(authToken, username, folderWithFile, true);
+                if (((DownloadResponse) downloadResponse).getStatus() == 200) {
+                    signedFile = ((DownloadResponse) downloadResponse).getSignedFile();
+                    // Check file content
+                    if (!DigifactinUtils.checkValidSignedFile(signedFile)) {
+                        throw new DigifactinException("Signed file is invalid, please check your configuration.");
+                    }
+                    LOG.info("Signed file " + signedFile.getAbsolutePath());
+                } else {
+                    throw new DigifactinException("Signed file is invalid, please check your configuration.");
+                }
             }
             if (signedFile == null) {
                 throw new DigifactinException("Signed file must be not null");
             }
-            // Update blob with signed file
+            // Update blob with signed file (always in pdf)
             blob = new FileBlob(signedFile);
+            blob.setMimeType(DigifactinUtils.PDF);
+            blob.setFilename(blob.getFilename());
         }
         return blob;
     }
@@ -211,12 +223,12 @@ public class SignContentListener implements EventListener {
         postValue.setSturl((String) getProperty(session, "digifactinconfig:sturl"));
         postValue.setPdfa((Boolean) getProperty(session, "digifactinconfig:pdfa", false));
         postValue.setFvp((Boolean) getProperty(session, "digifactinconfig:fvp", false));
-        postValue.setPfv((Integer) getProperty(session, "digifactinconfig:pfv", 0));
+        postValue.setPfv(((Long) getProperty(session, "digifactinconfig:pfv", 0)).intValue());
         postValue.setFvpp((Boolean) getProperty(session, "digifactinconfig:fvpp", false));
         postValue.setFvup((Boolean) getProperty(session, "digifactinconfig:fvup", false));
-        postValue.setMesdesde((Integer) getProperty(session, "digifactinconfig:mesdesde", 0));
-        postValue.setAnyodesde((Integer) getProperty(session, "digifactinconfig:anyodesde", 0));
-        postValue.setTipoperiodo((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0));
+        postValue.setMesdesde(((Long) getProperty(session, "digifactinconfig:mesdesde", 0)).intValue());
+        postValue.setAnyodesde(((Long) getProperty(session, "digifactinconfig:anyodesde", 0)).intValue());
+        postValue.setTipoperiodo(((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0)).intValue());
         FormDataFile image = new FormDataFile();
         image.setFilename(blob.getFilename());
         image.setFile(blob.getFile());

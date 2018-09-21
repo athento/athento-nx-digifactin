@@ -1,26 +1,28 @@
 package org.athento.nuxeo.digifactin.api.client;
 
+import java.io.File;
+
 /**
  * Download response.
  */
 public class DownloadResponse extends DigifactinResponse {
 
-    String fileContents;
-    String fileDownloadName;
+    File signedFile;
+    int status;
 
-    public String getFileContents() {
-        return fileContents;
+    public int getStatus() {
+        return status;
     }
 
-    public void setFileContents(String fileContents) {
-        this.fileContents = fileContents;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getFileDownloadName() {
-        return fileDownloadName;
+    public File getSignedFile() {
+        return signedFile;
     }
 
-    public void setFileDownloadName(String fileDownloadName) {
-        this.fileDownloadName = fileDownloadName;
+    public void setSignedFile(File signedFile) {
+        this.signedFile = signedFile;
     }
 }

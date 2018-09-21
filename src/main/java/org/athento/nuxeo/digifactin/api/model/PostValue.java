@@ -42,7 +42,7 @@ public class PostValue {
     boolean fvup;
     Integer mesdesde;
     Integer anyodesde;
-    Long tipoperiodo;
+    Integer tipoperiodo;
     FormDataFile uploadedImage;
 
     public String getUser() {
@@ -309,11 +309,11 @@ public class PostValue {
         this.anyodesde = anyodesde;
     }
 
-    public Long getTipoperiodo() {
+    public Integer getTipoperiodo() {
         return tipoperiodo;
     }
 
-    public void setTipoperiodo(Long tipoperiodo) {
+    public void setTipoperiodo(Integer tipoperiodo) {
         this.tipoperiodo = tipoperiodo;
     }
 

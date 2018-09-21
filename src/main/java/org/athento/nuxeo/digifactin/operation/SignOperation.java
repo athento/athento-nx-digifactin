@@ -139,7 +139,7 @@ public class SignOperation {
     boolean fvup;
 
     @Param(name = "TIPOPERIODO", required = false, description = " 0 mensual, 2 trimestral (Solo para XML)")
-    long tipoPeriodo;
+    Integer tipoPeriodo;
 
     /**
      * Param to save document.

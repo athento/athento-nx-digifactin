@@ -193,18 +193,23 @@ public class DigifactinClientImpl implements DigifactinClient {
 
         // Form data
         Map<String, Object> data = new HashMap<>();
-        data.put("INVOICE", invoice);   
-        data.put("PATHINVOICE", invoice);
+        data.put("INVOICE", invoice);
         data.put("TIPODOCUMENTO", tipoDocumento);
         data.put("USER", user);
+
+        LOG.info("dat " + data);
 
         // Execute
         DownloadResponse digifactinResponse = new DownloadResponse();
         try {
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/invoice", headers, data);
             if (apiResponse != null) {
-                FileBlob f = new FileBlob(apiResponse.getEntityInputStream());
-                LOG.info("Response: " + f.getFile().getAbsolutePath());
+                digifactinResponse.setStatus(apiResponse.getStatus());
+                FileBlob signedFile = new FileBlob(apiResponse.getEntityInputStream());
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("Response: " + signedFile.getFile().getAbsolutePath());
+                }
+                digifactinResponse.setSignedFile(signedFile.getFile());
                 return digifactinResponse;
             }
         } catch (IOException | ParseException e) {

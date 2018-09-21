@@ -45,7 +45,7 @@ public class DownloadOperation {
     String user;
 
     @Param(name = "TIPODOCUMENTO", description = "True para Factura y false para gasto.")
-    boolean tipoDocumento;
+    boolean tipoDocumento = true;
 
     @Param(name = "INVOICE", description = "Ruta del archivo firmado.")
     String invoice;

@@ -1,6 +1,8 @@
 package org.athento.nuxeo.digifactin.api.util;
 
 
+import org.apache.commons.io.FileExistsException;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
@@ -25,9 +27,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.Serializable;
-import java.io.StringWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -43,6 +43,7 @@ public final class DigifactinUtils {
 
     public static final String FETCHMODE_DOWNLOAD = "Download";
     public static final String FETCHMODE_FILESYSTEM = "Filesystem";
+    public static final String PDF = "application/pdf";
 
     /**
      * Read extended config properties.
@@ -246,6 +247,24 @@ public final class DigifactinUtils {
      */
     public static String sanitizeFile(String folder) {
         return File.separator + folder.replace("\\", File.separator).replace("\r\n", "");
+    }
+
+    /**
+     * Check signed file.
+     *
+     * @param signedFile
+     * @return
+     */
+    public static boolean checkValidSignedFile(File signedFile) {
+        if (signedFile == null) {
+            return false;
+        }
+        try {
+            List<String> lines = FileUtils.readLines(signedFile);
+            return !lines.isEmpty() && !lines.get(0).contains("null");
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
 
