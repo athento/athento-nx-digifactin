@@ -1,7 +1,7 @@
 package org.athento.nuxeo.digifactin.api.client;
 
 /**
- * Digifact response.
+ * Sign certified response.
  */
 public class SignCertifiedResponse extends DigifactinResponse {
 

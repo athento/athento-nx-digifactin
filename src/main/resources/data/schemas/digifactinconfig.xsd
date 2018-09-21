@@ -75,7 +75,7 @@
     <xs:element name="anyodesde" type="xs:integer" />
     <xs:element name="tipoperiodo" type="xs:integer" default="" />
 
-
+    <xs:element name="fetchMode" type="xs:string" default="Download" />
 
 
 </xs:schema>

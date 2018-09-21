@@ -18,6 +18,10 @@
                     onChainId="Digifactin.Logout">
             <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
         </catchChain>
+        <catchChain id="signExceptionChain"
+                    onChainId="Digifactin.Download">
+            <run chainId="digifactinExceptionChain" priority="0" rollBack="true"/>
+        </catchChain>
     </extension>
 
     <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
@@ -39,6 +43,7 @@
         <operation class="org.athento.nuxeo.digifactin.operation.SignOperation" />
         <operation class="org.athento.nuxeo.digifactin.operation.LoginOperation" />
         <operation class="org.athento.nuxeo.digifactin.operation.LogoutOperation" />
+        <operation class="org.athento.nuxeo.digifactin.operation.DownloadOperation" />
         <!-- Exceptions -->
         <operation class="org.athento.nuxeo.digifactin.operation.exception.DigifactinExceptionOperation"/>
     </extension>

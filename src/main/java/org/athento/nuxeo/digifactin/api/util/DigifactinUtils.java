@@ -41,6 +41,9 @@ public final class DigifactinUtils {
 
     public static final String CONFIG_PATH = "/DigifactinConfig";
 
+    public static final String FETCHMODE_DOWNLOAD = "Download";
+    public static final String FETCHMODE_FILESYSTEM = "Filesystem";
+
     /**
      * Read extended config properties.
      *

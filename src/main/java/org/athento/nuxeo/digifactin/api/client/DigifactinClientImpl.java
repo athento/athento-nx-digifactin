@@ -9,6 +9,7 @@ import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
 import org.athento.nuxeo.digifactin.api.util.RestAPIClient;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -154,6 +155,56 @@ public class DigifactinClientImpl implements DigifactinClient {
                 } else {
                     digifactinResponse.setsError("Generic error");
                 }
+                return digifactinResponse;
+            }
+        } catch (IOException | ParseException e) {
+            throw new DigifactinException(e);
+        }
+        return digifactinResponse;
+    }
+
+    /**
+     * Sing certified.
+     *
+     * @param authToken
+     * @param user
+     * @param invoice
+     * @param tipoDocumento
+     * @throws DigifactinException on error
+     * @return
+     */
+    @Override
+    public DigifactinResponse download(String authToken, String user, String invoice, Boolean tipoDocumento) throws DigifactinException {
+        if (invoice == null) {
+            throw new DigifactinException("Invoice must be not null");
+        }
+
+        if (digifactinURL == null) {
+            throw new DigifactinException("Please check the Digifactin API url in the configuration file");
+        }
+
+        if (tipoDocumento == null) {
+            tipoDocumento = Boolean.TRUE;
+        }
+        LOG.info("Downloading file " + invoice + ", " + tipoDocumento);
+        // Headers
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("Authorization", user + " " + authToken);
+
+        // Form data
+        Map<String, Object> data = new HashMap<>();
+        data.put("INVOICE", invoice);   
+        data.put("PATHINVOICE", invoice);
+        data.put("TIPODOCUMENTO", tipoDocumento);
+        data.put("USER", user);
+
+        // Execute
+        DownloadResponse digifactinResponse = new DownloadResponse();
+        try {
+            ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/invoice", headers, data);
+            if (apiResponse != null) {
+                FileBlob f = new FileBlob(apiResponse.getEntityInputStream());
+                LOG.info("Response: " + f.getFile().getAbsolutePath());
                 return digifactinResponse;
             }
         } catch (IOException | ParseException e) {

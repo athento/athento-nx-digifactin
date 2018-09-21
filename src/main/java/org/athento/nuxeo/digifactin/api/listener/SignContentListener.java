@@ -7,6 +7,7 @@ import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
 import org.athento.nuxeo.digifactin.api.model.PostValue;
 import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
 import org.athento.nuxeo.digifactin.api.util.FormDataFile;
+import org.athento.nuxeo.digifactin.operation.DownloadOperation;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
@@ -64,7 +65,7 @@ public class SignContentListener implements EventListener {
                     }
                     LOG.info("Login OK: " + authToken);
                     // Sign blob
-                    Blob blob = signBlob(session, authToken, (Blob) doc.getPropertyValue("file:content"));
+                    Blob blob = signBlob(session, authToken, username, (Blob) doc.getPropertyValue("file:content"));
                     // Update content with signed blob
                     doc.setPropertyValue("file:content", (Serializable) blob);
                 } catch (DigifactinException | IOException e) {
@@ -132,10 +133,11 @@ public class SignContentListener implements EventListener {
      *
      * @param session
      * @param authToken
+     * @param username
      * @param blob
      * @throws IOException, DigifactinException on error
      */
-    private Blob signBlob(CoreSession session, String authToken, Blob blob) throws IOException, DigifactinException {
+    private Blob signBlob(CoreSession session, String authToken, String username, Blob blob) throws IOException, DigifactinException {
         if (digifactinClient == null) {
             throw new DigifactinException("Client is not initializated");
         }
@@ -149,14 +151,24 @@ public class SignContentListener implements EventListener {
             }
             // Getting signed file from Folder into response
             String folderWithFile = ((SignCertifiedResponse) response).getFolder();
-            File signedFile = new File(DigifactinUtils.sanitizeFile(folderWithFile));
-            LOG.info("Signed file " + signedFile);
-            if (!signedFile.exists()) {
-                throw new DigifactinException("Signed file is not found: " + signedFile);
+            // Get signed file given the fetch mode
+            File signedFile = null;
+            String fetchMode = (String) getProperty(session, "digifactinconfig:fetchMode");
+            if (DigifactinUtils.FETCHMODE_FILESYSTEM.equals(fetchMode)) {
+                signedFile = new File(DigifactinUtils.sanitizeFile(folderWithFile));
+                LOG.info("Signed file " + signedFile);
+                if (!signedFile.exists()) {
+                    throw new DigifactinException("Signed file is not found: " + signedFile);
+                }
             } else {
-                // Update blob with signed file
-                blob = new FileBlob(signedFile);
+                // Download signed file
+                DigifactinResponse downloadResponse = digifactinClient.download(authToken, username, folderWithFile, true);
             }
+            if (signedFile == null) {
+                throw new DigifactinException("Signed file must be not null");
+            }
+            // Update blob with signed file
+            blob = new FileBlob(signedFile);
         }
         return blob;
     }
