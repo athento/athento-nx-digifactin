@@ -7,11 +7,11 @@ import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
 import org.athento.nuxeo.digifactin.api.model.PostValue;
 import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
 import org.athento.nuxeo.digifactin.api.util.FormDataFile;
-import org.athento.nuxeo.digifactin.operation.DownloadOperation;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.api.blobholder.BlobHolder;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.core.api.model.PropertyNotFoundException;
 import org.nuxeo.ecm.core.event.Event;
@@ -47,7 +47,12 @@ public class SignContentListener implements EventListener {
                 return;
             }
             if (hasSignFlag(doc)) {
-                LOG.info("Singing in Digifacting...");
+                // Prepare content to sign
+                Blob content = (Blob) doc.getPropertyValue("file:content");
+                if (content == null) {
+                    LOG.warn("Document has firma:digifactin=true, but it doesn't have a content.");
+                    return;
+                }
                 CoreSession session = ctxt.getCoreSession();
                 digifactinClient = new DigifactinClientImpl(session);
                 // Get default client information
@@ -57,6 +62,7 @@ public class SignContentListener implements EventListener {
                 // Token
                 String authToken = null;
                 try {
+                    LOG.info("Singing in Digifactin...");
                     // First, getting token
                     authToken = getAuthToken(clientId, username, password);
                     if (authToken == null) {
@@ -65,21 +71,23 @@ public class SignContentListener implements EventListener {
                     }
                     LOG.info("Login OK: " + authToken);
                     // Sign blob
-                    Blob blob = signBlob(session, authToken, username, (Blob) doc.getPropertyValue("file:content"));
+                    Blob blob = signBlob(session, authToken, username, content);
                     // Update content with signed blob
                     doc.setPropertyValue("file:content", (Serializable) blob);
                 } catch (DigifactinException | IOException e) {
                     LOG.error("Unable to sign with Digifactin", e);
                     event.markRollBack();
                     throw new NuxeoException(e);
-                } /*finally {
+                } finally {
+                    // Always, update firma:digifactin to false
+                    doc.setPropertyValue("firma:digifactin", false);
                     try {
                         digifactinClient.logout(username, authToken);
                         LOG.info("Logout OK for " + authToken);
                     } catch (DigifactinException e) {
                         LOG.error("Unable to do logout", e);
                     }
-                }*/
+                }
             }
         }
     }
@@ -251,7 +259,7 @@ public class SignContentListener implements EventListener {
                 return digifactEnabled != null && digifactEnabled;
             } catch (PropertyNotFoundException e) {
                 LOG.trace("Unable to check digifact sign flag because " +
-                        "property 'firmado:digifactin' is not found in the document type. Please, ensure it is included.");
+                        "property 'firma:digifactin' is not found in the document type. Please, ensure it is included.");
             }
         }
         return hasSign;

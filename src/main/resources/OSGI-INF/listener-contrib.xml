@@ -7,6 +7,7 @@
                   postCommit="false" priority="100"
                   class="org.athento.nuxeo.digifactin.api.listener.SignContentListener">
             <event>aboutToCreate</event>
+            <event>beforeDocumentModification</event>
         </listener>
 
     </extension>
