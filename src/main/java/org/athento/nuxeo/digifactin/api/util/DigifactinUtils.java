@@ -250,6 +250,16 @@ public final class DigifactinUtils {
     }
 
     /**
+     * Sanitize string.
+     *
+     * @param string
+     * @return
+     */
+    public static String sanitizeString(String string) {
+        return string.replace("\r\n", "");
+    }
+
+    /**
      * Check signed file.
      *
      * @param signedFile
@@ -266,5 +276,6 @@ public final class DigifactinUtils {
             return false;
         }
     }
+
 }
 

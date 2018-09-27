@@ -4,7 +4,7 @@
     <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
                point="listener">
         <listener name="signContent" async="false" enabled="true"
-                  postCommit="false" priority="100"
+                  postCommit="false" priority="1000"
                   class="org.athento.nuxeo.digifactin.api.listener.SignContentListener">
             <event>aboutToCreate</event>
             <event>beforeDocumentModification</event>

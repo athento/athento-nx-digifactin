@@ -71,9 +71,10 @@ public class SignContentListener implements EventListener {
                     }
                     LOG.info("Login OK: " + authToken);
                     // Sign blob
-                    Blob blob = signBlob(session, authToken, username, content);
+                    Blob signedBlob = signBlob(session, authToken, username, content);
+                    LOG.info ("Signed " + signedBlob.getFilename() + ", " + signedBlob.getMimeType());
                     // Update content with signed blob
-                    doc.setPropertyValue("file:content", (Serializable) blob);
+                    doc.setPropertyValue("file:content", (Serializable) signedBlob);
                 } catch (DigifactinException | IOException e) {
                     LOG.error("Unable to sign with Digifactin", e);
                     event.markRollBack();
@@ -159,25 +160,33 @@ public class SignContentListener implements EventListener {
             }
             // Getting signed file from Folder into response
             String folderWithFile = ((SignCertifiedResponse) response).getFolder();
+            // Get blog filename
+            String filename = blob.getFilename();
+            LOG.info("Filename " + filename);
             // Get signed file given the fetch mode
             File signedFile;
             String fetchMode = (String) getProperty(session, "digifactinconfig:fetchMode");
             if (DigifactinUtils.FETCHMODE_FILESYSTEM.equals(fetchMode)) {
                 signedFile = new File(DigifactinUtils.sanitizeFile(folderWithFile));
-                LOG.info("Signed file " + signedFile);
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("Signed file " + signedFile);
+                }
                 if (!signedFile.exists()) {
                     throw new DigifactinException("Signed file is not found: " + signedFile);
                 }
             } else {
                 // Download signed file
-                DigifactinResponse downloadResponse = digifactinClient.download(authToken, username, folderWithFile, true);
+                DigifactinResponse downloadResponse = digifactinClient.download(authToken, username,
+                        DigifactinUtils.sanitizeString(folderWithFile), true);
                 if (((DownloadResponse) downloadResponse).getStatus() == 200) {
                     signedFile = ((DownloadResponse) downloadResponse).getSignedFile();
                     // Check file content
                     if (!DigifactinUtils.checkValidSignedFile(signedFile)) {
                         throw new DigifactinException("Signed file is invalid, please check your configuration.");
                     }
-                    LOG.info("Signed file " + signedFile.getAbsolutePath());
+                    if (LOG.isDebugEnabled()) {
+                        LOG.debug("Signed file " + signedFile.getAbsolutePath());
+                    }
                 } else {
                     throw new DigifactinException("Signed file is invalid, please check your configuration.");
                 }
@@ -188,7 +197,7 @@ public class SignContentListener implements EventListener {
             // Update blob with signed file (always in pdf)
             blob = new FileBlob(signedFile);
             blob.setMimeType(DigifactinUtils.PDF);
-            blob.setFilename(blob.getFilename());
+            blob.setFilename(filename + ".pdf");
         }
         return blob;
     }
