@@ -1,0 +1,29 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:c="http://java.sun.com/jstl/core"
+     xmlns:a4j="http://richfaces.org/a4j"
+     xmlns:nxu="http://nuxeo.org/nxweb/util"
+     xmlns:nxw="http://nuxeo.org/nxforms/runtime/widget"
+     xmlns:nxl="http://nuxeo.org/nxforms/layout">
+
+    <c:if test="#{webActions.checkFilter('only_for_manager')}">
+        <h:form>
+            <a4j:region>
+                <nxl:layout name="digifactin"
+                            mode="edit" value="#{digifactinAdmin.digifactinConfigDoc}" />
+                <div class="buttonsGadget">
+                    <h:commandButton action="#{digifactinAdmin.save()}" value="#{messages['command.save']}" />
+                </div>
+                <a4j:status>
+                    <f:facet name="start">
+                        <h:graphicImage value="/img/standart_waiter.gif" />
+                    </f:facet>
+                    <f:facet name="stop">
+                        <h:graphicImage value="/icons/icon_spacer.gif" />
+                    </f:facet>
+                </a4j:status>
+            </a4j:region>
+        </h:form>
+    </c:if>
+
+</div>
