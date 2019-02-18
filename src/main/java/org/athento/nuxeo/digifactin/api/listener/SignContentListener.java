@@ -197,7 +197,7 @@ public class SignContentListener implements EventListener {
             // Update blob with signed file (always in pdf)
             blob = new FileBlob(signedFile);
             blob.setMimeType(DigifactinUtils.PDF);
-            blob.setFilename(filename + ".pdf");
+            blob.setFilename(filename);
         }
         return blob;
     }

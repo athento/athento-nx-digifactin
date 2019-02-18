@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.athento.com/ecm/schemas/renaultcustom/extendedConfig"
-    targetNamespace="http://www.athento.com/ecm/schemas/renaultcustom/extendedConfig">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.athento.com/ecm/schemas/digifactin/extendedConfig"
+    targetNamespace="http://www.athento.com/ecm/schemas/digifactin/extendedConfig">
     <!-- helper XSD definitions for list types -->
     <xs:complexType name="content">
         <xs:sequence>

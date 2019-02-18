@@ -8,6 +8,9 @@ public class SignCertifiedResponse extends DigifactinResponse {
     String folder;
     String nPages;
     String sError;
+    String nPagesTotal;
+    String nPagesMax;
+
     int elapsed_time;
     /** Based on {@link org.athento.nuxeo.digifactin.api.client.StatusCode} */
     int statusCode;
@@ -50,6 +53,22 @@ public class SignCertifiedResponse extends DigifactinResponse {
 
     public void setElapsed_time(int elapsed_time) {
         this.elapsed_time = elapsed_time;
+    }
+
+    public String getnPagesTotal() {
+        return nPagesTotal;
+    }
+
+    public void setnPagesTotal(String nPagesTotal) {
+        this.nPagesTotal = nPagesTotal;
+    }
+
+    public String getnPagesMax() {
+        return nPagesMax;
+    }
+
+    public void setnPagesMax(String nPagesMax) {
+        this.nPagesMax = nPagesMax;
     }
 
     @Override
