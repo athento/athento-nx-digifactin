@@ -4,25 +4,24 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.digifactin.api.client.DigifactinClientImpl;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
+import org.nuxeo.ecm.automation.core.util.DocumentHelper;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.NuxeoException;
-import org.nuxeo.ecm.core.api.model.PropertyNotFoundException;
 import org.nuxeo.ecm.core.event.Event;
 import org.nuxeo.ecm.core.event.EventListener;
 import org.nuxeo.ecm.core.event.impl.DocumentEventContext;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
- * Listener to Sign the file:content metadata when a new document is created.
+ * Listener to Sign the xpath content metadata when a new blob is attached.
  */
-public class SignContentListener extends SignListener implements EventListener {
+public class SignBlobListener extends SignListener implements EventListener {
 
     /** Log. */
-    private static final Log LOG = LogFactory.getLog(SignContentListener.class);
+    private static final Log LOG = LogFactory.getLog(SignBlobListener.class);
 
     /**
      * Handle event.
@@ -37,11 +36,13 @@ public class SignContentListener extends SignListener implements EventListener {
             if (doc.isVersion()) {
                 return;
             }
-            if (hasSignFlag(doc)) {
+            // Check if content must be signed
+            String toSign = (String) ctxt.getProperties().get("firma:digifactin");
+            if (Boolean.valueOf(toSign)) {
                 // Prepare content to sign
-                Blob content = (Blob) doc.getPropertyValue("file:content");
+                Blob content = (Blob) ctxt.getProperties().get("blob");
                 if (content == null) {
-                    LOG.warn("Document has firma:digifactin=true, but it doesn't have a content.");
+                    LOG.warn("Document has firma:digifactin=true, but it doesn't have an attach content.");
                     return;
                 }
                 CoreSession session = ctxt.getCoreSession();
@@ -65,14 +66,12 @@ public class SignContentListener extends SignListener implements EventListener {
                     Blob signedBlob = signBlob(session, authToken, username, content, doc);
                     LOG.info ("Signed " + signedBlob.getFilename() + ", " + signedBlob.getMimeType());
                     // Update content with signed blob
-                    doc.setPropertyValue("file:content", (Serializable) signedBlob);
+                    DocumentHelper.addBlob(doc.getProperty("files"), signedBlob);
                 } catch (DigifactinException | IOException e) {
                     LOG.error("Unable to sign with Digifactin", e);
                     event.markRollBack();
                     throw new NuxeoException(e);
                 } finally {
-                    // Always, update firma:digifactin to false
-                    doc.setPropertyValue("firma:digifactin", false);
                     try {
                         digifactinClient.logout(username, authToken);
                         LOG.info("Logout OK for " + authToken);
@@ -84,24 +83,4 @@ public class SignContentListener extends SignListener implements EventListener {
         }
     }
 
-
-    /**
-     * Check if flag is enabled to sign.
-     *
-     * @param doc
-     * @return
-     */
-    private boolean hasSignFlag(DocumentModel doc) {
-        boolean hasSign = false;
-        if (doc != null) {
-            try {
-                Boolean digifactEnabled = (Boolean) doc.getPropertyValue("firma:digifactin");
-                return digifactEnabled != null && digifactEnabled;
-            } catch (PropertyNotFoundException e) {
-                LOG.trace("Unable to check digifact sign flag because " +
-                        "property 'firma:digifactin' is not found in the document type. Please, ensure it is included.");
-            }
-        }
-        return hasSign;
-    }
 }

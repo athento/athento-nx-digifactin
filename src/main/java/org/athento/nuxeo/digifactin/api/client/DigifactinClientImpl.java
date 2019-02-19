@@ -129,6 +129,8 @@ public class DigifactinClientImpl implements DigifactinClient {
             throw new DigifactinException("Please check the Digifactin API url in the configuration file");
         }
 
+        LOG.info("Signing filename: " + postValue.getUploadedImage().getFilename());
+
         // Headers
         Map<String, Object> headers = new HashMap<>();
         headers.put("Authorization", postValue.getUser() + " " + authToken);
