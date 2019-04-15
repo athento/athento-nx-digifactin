@@ -186,7 +186,7 @@ public abstract class SignListener {
         postValue.setAnyodesde(((Long) getProperty(session, "digifactinconfig:anyodesde", 0)).intValue());
         postValue.setTipoperiodo(((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0)).intValue());
         FormDataFile image = new FormDataFile();
-        image.setFilename(docId + "_" + blob.getFilename());
+        image.setFilename(docId + "_" + blob.getFilename().trim());
         image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);
