@@ -267,12 +267,14 @@ public final class DigifactinUtils {
      */
     public static boolean checkValidSignedFile(File signedFile) {
         if (signedFile == null) {
+            LOG.info("signed file is null");
             return false;
         }
         try {
             List<String> lines = FileUtils.readLines(signedFile);
             return !lines.isEmpty() && !lines.get(0).contains("null");
         } catch (IOException e) {
+            LOG.info("IO error in check: " + e);
             return false;
         }
     }

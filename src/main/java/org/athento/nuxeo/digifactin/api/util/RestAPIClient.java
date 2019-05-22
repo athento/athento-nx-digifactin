@@ -63,8 +63,8 @@ public final class RestAPIClient {
             if (value instanceof FormDataFile) {
                 String name = data.getKey();
                 String filename = ((FormDataFile) value).getFilename();
-                if (LOG.isDebugEnabled()) {
-                    LOG.debug("Sending " + name + ", " + filename + ", file:" + ((FormDataFile) value).getFile().getAbsolutePath());
+                if (LOG.isInfoEnabled()) {
+                    LOG.info("Sending " + name + ", " + filename + ", file:" + ((FormDataFile) value).getFile().getAbsolutePath());
                 }
                 FileDataBodyPart bodyFile = new FileDataBodyPart(name, ((FormDataFile) value).getFile());
                 ContentDisposition cd = FormDataContentDisposition.name(name).fileName(filename).build();

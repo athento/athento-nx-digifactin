@@ -6,6 +6,7 @@ import org.apache.commons.logging.LogFactory;
 import org.athento.nuxeo.digifactin.api.exception.DigifactinException;
 import org.athento.nuxeo.digifactin.api.model.PostValue;
 import org.athento.nuxeo.digifactin.api.util.DigifactinUtils;
+import org.athento.nuxeo.digifactin.api.util.FormDataFile;
 import org.athento.nuxeo.digifactin.api.util.RestAPIClient;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.nuxeo.ecm.core.api.CoreSession;
@@ -141,6 +142,9 @@ public class DigifactinClientImpl implements DigifactinClient {
         // Execute
         SignCertifiedResponse digifactinResponse = new SignCertifiedResponse();
         try {
+            LOG.info("Map data:" + data);
+            LOG.info("File: " + ((FormDataFile) data.get("UploadedImage")).getFilename() +
+                    ", " + ((FormDataFile) data.get("UploadedImage")).getFile().getAbsolutePath());
             ClientResponse apiResponse = RestAPIClient.doPost(digifactinURL + "/api/signcertified", headers, data);
             if (apiResponse != null) {
                 ObjectMapper mapper = new ObjectMapper();
@@ -199,7 +203,6 @@ public class DigifactinClientImpl implements DigifactinClient {
         data.put("TIPODOCUMENTO", tipoDocumento);
         data.put("USER", user);
 
-        LOG.info("dat " + data);
 
         // Execute
         DownloadResponse digifactinResponse = new DownloadResponse();

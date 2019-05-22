@@ -117,13 +117,13 @@ public abstract class SignListener {
                     signedFile = ((DownloadResponse) downloadResponse).getSignedFile();
                     // Check file content
                     if (!DigifactinUtils.checkValidSignedFile(signedFile)) {
-                        throw new DigifactinException("Signed file is invalid, please check your configuration.");
+                        throw new DigifactinException("VALID: Signed file is invalid, please check your configuration.");
                     }
                     if (LOG.isDebugEnabled()) {
                         LOG.debug("Signed file " + signedFile.getAbsolutePath());
                     }
                 } else {
-                    throw new DigifactinException("Signed file is invalid, please check your configuration.");
+                    throw new DigifactinException("Response " + ((DownloadResponse) downloadResponse).getStatus() + " is not OK: Signed file is invalid, please check your configuration.");
                 }
             }
             if (signedFile == null) {
@@ -186,7 +186,11 @@ public abstract class SignListener {
         postValue.setAnyodesde(((Long) getProperty(session, "digifactinconfig:anyodesde", 0)).intValue());
         postValue.setTipoperiodo(((Long) getProperty(session, "digifactinconfig:tipoperiodo", 0)).intValue());
         FormDataFile image = new FormDataFile();
-        image.setFilename(docId + "_" + blob.getFilename().trim());
+        String filename = blob.getFilename().trim();
+        if (filename == null || filename.isEmpty()) {
+            filename = "nonamed.png";
+        }
+        image.setFilename(docId + "_" + filename);
         image.setFile(blob.getFile());
         image.setMimetype(blob.getMimeType());
         postValue.setUploadedImage(image);
