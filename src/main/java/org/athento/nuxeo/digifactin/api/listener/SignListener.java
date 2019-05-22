@@ -97,6 +97,9 @@ public abstract class SignListener {
             String folderWithFile = ((SignCertifiedResponse) response).getFolder();
             // Get blog filename
             String filename = blob.getFilename();
+            if (filename == null || filename.isEmpty()) {
+                filename = "nonamed.png";
+            }
             LOG.info("Filename " + filename);
             // Get signed file given the fetch mode
             File signedFile;
